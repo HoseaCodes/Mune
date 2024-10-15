@@ -59,7 +59,7 @@ const Header: React.FC = () => {
         <NavLink to="/about">About</NavLink>
         <NavLink to="/contact">Contact</NavLink>
         <NavLink to="/subscribe">Subscribe</NavLink>
-        <Button to="/get-started">Get Mun-e</Button>
+        <Button to="/get-started">Log In</Button>
         {/* <NavLink to="/pricing">Pricing</NavLink> */}
       </Nav>
       {isMobile && (
