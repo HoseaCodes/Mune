@@ -10,7 +10,7 @@ const MissionSection: React.FC = () => {
         {/* Div for mobile and tablet screens */}
         <div className="lg:hidden p-6 rounded-lg max-w-[510px] mx-auto border-t-2 border-custom-bgreen mt-16">
           <h2 className="text-black font-bold text-2xl sm:text-3xl md:text-4xl leading-tight mb-4">
-            Our Mission: <br /> Elevate Your Finances
+            How we give back to the community: <br /> Mun-e Uplift.
           </h2>
           <p className="text-black text-base sm:text-lg mb-4">
             Our mission is simple: help you get your money
