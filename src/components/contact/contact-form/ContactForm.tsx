@@ -5,6 +5,26 @@ import React, {
 } from 'react';
 import TextField from './TextField';
 import MessageTextArea from './MessageTextArea';
+import * as yup from 'yup';
+
+const validationSchema = yup.object().shape({
+  email: yup
+    .string()
+    .email('Invalid email format')
+    .min(5, 'Email must be at least 5 characters')
+    .max(254, 'Email must not exceed 254 characters')
+    .required('Email is required'),
+  name: yup
+    .string()
+    .min(5, 'Name must be at least 5 characters')
+    .max(100, 'Name must not exceed 100 characters')
+    .required('Name is required'),
+  message: yup
+    .string()
+    .min(10, 'Message must be at least 10 characters')
+    .max(250, 'Message must not exceed 250 characters')
+    .required('Message is required'),
+});
 
 const ContactForm: React.FC = () => {
   const [formData, setFormData] = useState<{
@@ -27,10 +47,25 @@ const ContactForm: React.FC = () => {
     }));
   };
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (
+    e: FormEvent<HTMLFormElement>
+  ) => {
     e.preventDefault();
-    // Add submission logic here...
-    setFormData({ email: '', name: '', message: '' });
+
+    try {
+      await validationSchema.validate(formData, {
+        abortEarly: false,
+      });
+
+      console.log('success');
+      setFormData({ email: '', name: '', message: '' });
+    } catch (err) {
+      console.log('failure');
+
+      if (err instanceof yup.ValidationError) {
+        console.error(err.errors);
+      }
+    }
   };
 
   return (
