@@ -11,12 +11,12 @@ const TextField: React.FC<{
 }> = ({ type, name, val, placeholder, handleChange }) => (
   <div>
     <input
-      type={type}
+      required
       id={name}
+      type={type}
       name={name}
       value={val}
       onChange={handleChange}
-      required
       className="block w-full py-2 px-6 laptop:py-3 bg-white border border-gray-300 rounded-3xl laptop:rounded-xl shadow-sm focus:outline-none focus:ring-slate-400 focus:border-slate-400 text-black text-base placeholder-[#010A0399] font-semibold font-sf-pro"
       placeholder={placeholder}
     />

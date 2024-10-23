@@ -1,6 +1,7 @@
 import React, {
   ChangeEvent,
   FormEvent,
+  useEffect,
   useState,
 } from 'react';
 import TextField from './TextField';
@@ -36,6 +37,8 @@ const ContactForm: React.FC = () => {
     name: '',
     message: '',
   });
+  const [buttonDisabled, setButtonDisabled] =
+    useState<boolean>(true);
 
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
@@ -68,8 +71,17 @@ const ContactForm: React.FC = () => {
     }
   };
 
+  useEffect(
+    () =>
+      setButtonDisabled(
+        !Object.values(formData).includes('') ? false : true
+      ),
+    [formData]
+  );
+
   return (
     <form
+      noValidate
       onSubmit={handleSubmit}
       className="space-y-6 bg-[#1AAE33] px-4 py-8 rounded-[48px] w-full"
     >
@@ -92,8 +104,9 @@ const ContactForm: React.FC = () => {
         handleChange={handleChange}
       />
       <button
+        disabled={buttonDisabled}
         type="submit"
-        className="w-content flex justify-center py-3 px-6 border-2 border-[#CEE0D0] rounded-xl shadow-sm text-base bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-400 text-black font-semibold"
+        className={`${buttonDisabled && 'opacity-50'} w-content flex justify-center py-3 px-6 border-2 border-[#CEE0D0] rounded-xl shadow-sm text-base bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-400 text-black font-semibold`}
       >
         Submit
       </button>
