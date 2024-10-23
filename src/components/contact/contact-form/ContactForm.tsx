@@ -11,20 +11,50 @@ import * as yup from 'yup';
 const validationSchema = yup.object().shape({
   email: yup
     .string()
-    .email('Email format is invalid')
-    .min(5, 'Email must be at least 5 characters')
-    .max(254, 'Email must not exceed 254 characters')
-    .required('Email is required'),
+    .email({
+      field: 'email',
+      message: 'Email format is invalid',
+    })
+    .min(5, {
+      field: 'email',
+      message: 'Email must be at least 5 characters',
+    })
+    .max(254, {
+      field: 'email',
+      message: 'Email must not exceed 254 characters',
+    })
+    .required({
+      field: 'email',
+      message: 'Email is required',
+    }),
   name: yup
     .string()
-    .min(5, 'Name must be at least 5 characters')
-    .max(100, 'Name must not exceed 100 characters')
-    .required('Name is required'),
+    .min(5, {
+      field: 'name',
+      message: 'Name must be at least 5 characters',
+    })
+    .max(100, {
+      field: 'name',
+      message: 'Name must not exceed 100 characters',
+    })
+    .required({
+      field: 'name',
+      message: 'Name is required',
+    }),
   message: yup
     .string()
-    .min(10, 'Message must be at least 10 characters')
-    .max(250, 'Message must not exceed 250 characters')
-    .required('Message is required'),
+    .min(10, {
+      field: 'message',
+      message: 'Message must be at least 10 characters',
+    })
+    .max(250, {
+      field: 'message',
+      message: 'Message must not exceed 250 characters',
+    })
+    .required({
+      field: 'message',
+      message: 'Message is required',
+    }),
 });
 
 const ContactForm: React.FC = () => {
