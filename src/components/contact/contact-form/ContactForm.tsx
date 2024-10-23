@@ -11,7 +11,7 @@ import * as yup from 'yup';
 const validationSchema = yup.object().shape({
   email: yup
     .string()
-    .email('Invalid email format')
+    .email('Email format is invalid')
     .min(5, 'Email must be at least 5 characters')
     .max(254, 'Email must not exceed 254 characters')
     .required('Email is required'),
@@ -37,6 +37,11 @@ const ContactForm: React.FC = () => {
     name: '',
     message: '',
   });
+  const [formErrors, setFormErrors] = useState<{
+    email?: string;
+    name?: string;
+    message?: string;
+  }>({});
   const [buttonDisabled, setButtonDisabled] =
     useState<boolean>(true);
 
@@ -47,6 +52,11 @@ const ContactForm: React.FC = () => {
     setFormData((prevData) => ({
       ...prevData,
       [name]: value,
+    }));
+
+    setFormErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: undefined,
     }));
   };
 
@@ -62,6 +72,7 @@ const ContactForm: React.FC = () => {
 
       console.log('success');
       setFormData({ email: '', name: '', message: '' });
+      setFormErrors({});
     } catch (err) {
       console.log('failure');
 
@@ -89,6 +100,7 @@ const ContactForm: React.FC = () => {
         type="name"
         name="name"
         val={formData.name}
+        validationError={formErrors.name}
         placeholder="Name"
         handleChange={handleChange}
       />
@@ -96,11 +108,13 @@ const ContactForm: React.FC = () => {
         type="email"
         name="email"
         val={formData.email}
+        validationError={formErrors.email}
         placeholder="Email"
         handleChange={handleChange}
       />
       <MessageTextArea
         val={formData.message}
+        validationError={formErrors.message}
         handleChange={handleChange}
       />
       <button
