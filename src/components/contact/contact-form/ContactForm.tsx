@@ -15,17 +15,9 @@ const validationSchema = yup.object().shape({
       field: 'email',
       message: 'Email format is invalid',
     })
-    .min(5, {
-      field: 'email',
-      message: 'Email must be at least 5 characters',
-    })
     .max(254, {
       field: 'email',
       message: 'Email must not exceed 254 characters',
-    })
-    .required({
-      field: 'email',
-      message: 'Email is required',
     }),
   name: yup
     .string()
@@ -36,10 +28,6 @@ const validationSchema = yup.object().shape({
     .max(100, {
       field: 'name',
       message: 'Name must not exceed 100 characters',
-    })
-    .required({
-      field: 'name',
-      message: 'Name is required',
     }),
   message: yup
     .string()
@@ -51,10 +39,6 @@ const validationSchema = yup.object().shape({
       field: 'message',
       message: 'Message must not exceed 250 characters',
     })
-    .required({
-      field: 'message',
-      message: 'Message is required',
-    }),
 });
 
 const ContactForm: React.FC = () => {
@@ -107,7 +91,21 @@ const ContactForm: React.FC = () => {
       console.log('failure');
 
       if (err instanceof yup.ValidationError) {
-        console.error(err.errors);
+        const errors = err.errors.reduce(
+          (acc, error) => {
+            console.log(error);
+            //@ts-expect-error ...
+            acc[error.field] = error.message;
+            return acc;
+          },
+          {} as {
+            email?: string;
+            name?: string;
+            message?: string;
+          }
+        );
+
+        setFormErrors(errors);
       }
     }
   };
