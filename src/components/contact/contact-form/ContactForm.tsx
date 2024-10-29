@@ -1,181 +1,19 @@
-import React, {
-  ChangeEvent,
-  FormEvent,
-  useEffect,
-  useState,
-} from 'react';
+import React from 'react';
 import TextField from './TextField';
 import MessageTextArea from './MessageTextArea';
-import * as yup from 'yup';
-import {
-  addSubmission,
-  canSubmit,
-} from '../../../utils/submissionTracker';
-
-const validationSchema = yup.object().shape({
-  email: yup
-    .string()
-    .email({
-      field: 'email',
-      message: 'Email format is invalid',
-    })
-    .max(254, {
-      field: 'email',
-      message: 'Email must not exceed 254 characters',
-    }),
-  name: yup
-    .string()
-    .min(5, {
-      field: 'name',
-      message: 'Name must be at least 5 characters',
-    })
-    .max(100, {
-      field: 'name',
-      message: 'Name must not exceed 100 characters',
-    }),
-  message: yup
-    .string()
-    .min(10, {
-      field: 'message',
-      message: 'Message must be at least 10 characters',
-    })
-    .max(250, {
-      field: 'message',
-      message: 'Message must not exceed 250 characters',
-    }),
-});
+import useForm from '../../../hooks/useForm';
+import { contactValidations } from '../../../constants/validationSchemas';
 
 const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState<{
-    email: string;
-    name: string;
-    message: string;
-  }>({
-    email: '',
-    name: '',
-    message: '',
-  });
-  const [formErrors, setFormErrors] = useState<{
-    email?: string;
-    name?: string;
-    message?: string;
-  }>({});
-  const [buttonDisabled, setButtonDisabled] =
-    useState<boolean>(true);
-  const [displaySubmitCard, setDisplaySubmitCard] =
-    useState<boolean>(false);
-
-  const [waitTime, setWaitTime] = useState<number | null>(
-    null
-  );
-
-  const formatWaitTime = (ms: number) => {
-    const hours = Math.floor(ms / (1000 * 60 * 60));
-    const minutes = Math.floor(
-      (ms % (1000 * 60 * 60)) / (1000 * 60)
-    );
-    return `${hours}h ${minutes}m`;
-  };
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-
-    setFormErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: undefined,
-    }));
-  };
-
-  const handleSubmit = async (
-    e: FormEvent<HTMLFormElement>
-  ) => {
-    e.preventDefault();
-    const submissionStatus = canSubmit(
-      'contact-form-submissions'
-    );
-
-    try {
-      await validationSchema.validate(formData, {
-        abortEarly: false,
-      });
-
-      if (submissionStatus.allowed) {
-        addSubmission(
-          'contact-form-submissions',
-          Date.now()
-        );
-        setWaitTime(null);
-
-        setFormData({ email: '', name: '', message: '' });
-        setFormErrors({});
-        setDisplaySubmitCard(true);
-
-        alert('Form submitted successfully!');
-      } else {
-        setWaitTime(
-          submissionStatus.waitTime as number | null
-        );
-
-        alert(
-          `You must wait for ${formatWaitTime(waitTime as number)} until next submission.`
-        );
-      }
-    } catch (err) {
-      console.log('failure');
-
-      if (err instanceof yup.ValidationError) {
-        const errors = err.errors.reduce(
-          (acc, error) => {
-            console.log(error);
-            //@ts-expect-error ...
-            acc[error.field] = error.message;
-            return acc;
-          },
-          {} as {
-            email?: string;
-            name?: string;
-            message?: string;
-          }
-        );
-
-        setFormErrors(errors);
-      }
-    }
-  };
-
-  useEffect(() => {
-    const submissionStatus = canSubmit(
-      'contact-form-submissions'
-    );
-    setWaitTime(submissionStatus.waitTime || null);
-
-    if (submissionStatus.waitTime) {
-      const interval = setInterval(() => {
-        const newStatus = canSubmit(
-          'contact-form-submissions'
-        );
-        setWaitTime(newStatus.waitTime || null);
-
-        if (newStatus.allowed) clearInterval(interval);
-      }, 1000);
-
-      return () => clearInterval(interval);
-    }
-  }, []);
-
-  useEffect(
-    () =>
-      setButtonDisabled(
-        !Object.values(formData).includes('') ? false : true
-      ),
-    [formData]
-  );
+  const {
+    buttonDisabled,
+    formData,
+    formErrors,
+    displaySubmitCard,
+    handleChange,
+    handleSubmit,
+    setDisplaySubmitCard,
+  } = useForm(contactValidations, 'contact-form-submissions');
 
   return (
     <div className="relative">

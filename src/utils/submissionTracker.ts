@@ -1,37 +1,48 @@
-const SUBMISSION_KEY = 'contact-form-submissions';
 const MAX_SUBMISSIONS = 3;
-const TIME_WINDOW = 100000;
+// const TIME_WINDOW = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+const TIME_WINDOW = 100000; // 1 minute in milliseconds for testing purposes
 
-export const getSubmissions = (submissionKey: string): number[] => {
-  const submissions = localStorage.getItem(submissionKey);
+export const getSubmissions = (
+  localStorageKey: string
+): number[] => {
+  const submissions = localStorage.getItem(localStorageKey);
   return submissions ? JSON.parse(submissions) : [];
 };
 
-export const addSubmission = (submissionKey: string, timestamp: number): void => {
-  const submissions = getSubmissions(submissionKey);
+export const addSubmission = (
+  localStorageKey: string,
+  timestamp: number
+): void => {
+  const submissions = getSubmissions(localStorageKey);
   submissions.push(timestamp);
   localStorage.setItem(
-    SUBMISSION_KEY,
+    localStorageKey,
     JSON.stringify(submissions)
   );
 };
 
-export const clearOldSubmissions = (submissionKey: string): void => {
-  const submissions = getSubmissions(submissionKey).filter(
+export const clearOldSubmissions = (
+  localStorageKey: string
+): void => {
+  const submissions = getSubmissions(
+    localStorageKey
+  ).filter(
     (timestamp) => Date.now() - timestamp < TIME_WINDOW
   );
   localStorage.setItem(
-    SUBMISSION_KEY,
+    localStorageKey,
     JSON.stringify(submissions)
   );
 };
 
-export const canSubmit = (submissionKey: string): {
+export const canSubmit = (
+  localStorageKey: string
+): {
   allowed: boolean;
   waitTime?: number;
 } => {
-  clearOldSubmissions(submissionKey);
-  const submissions = getSubmissions(submissionKey);
+  clearOldSubmissions(localStorageKey);
+  const submissions = getSubmissions(localStorageKey);
 
   if (submissions.length < MAX_SUBMISSIONS) {
     return { allowed: true };
