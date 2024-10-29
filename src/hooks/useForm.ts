@@ -36,24 +36,34 @@ function useForm(
 
   const formatWaitTime = useCallback((ms: number) => {
     const hours = Math.floor(ms / (1000 * 60 * 60));
-    const minutes = Math.floor((ms % (1000 * 60 * 60)) / (1000 * 60));
+    const minutes = Math.floor(
+      (ms % (1000 * 60 * 60)) / (1000 * 60)
+    );
     return `${hours}h ${minutes}m`;
   }, []);
 
-  const formattedWaitTime = useMemo(() => (waitTime ? formatWaitTime(waitTime) : null), [waitTime, formatWaitTime]);
+  const formattedWaitTime = useMemo(
+    () => (waitTime ? formatWaitTime(waitTime) : null),
+    [waitTime, formatWaitTime]
+  );
 
-  const handleChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
+  const handleChange = useCallback(
+    (
+      e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    ) => {
+      const { name, value } = e.target;
+      setFormData((prevData) => ({
+        ...prevData,
+        [name]: value,
+      }));
 
-    setFormErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: undefined,
-    }));
-  }, []);
+      setFormErrors((prevErrors) => ({
+        ...prevErrors,
+        [name]: undefined,
+      }));
+    },
+    []
+  );
 
   const handleSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
@@ -73,22 +83,35 @@ function useForm(
           setDisplaySubmitCard(true);
           alert('Form submitted successfully!');
         } else {
-          setWaitTime(submissionStatus.waitTime as number | null);
-          alert(`You must wait for ${formattedWaitTime} until next submission.`);
+          setWaitTime(
+            submissionStatus.waitTime as number | null
+          );
+          alert(
+            `You must wait for ${formattedWaitTime} until next submission.`
+          );
         }
       } catch (err) {
         if (err instanceof yup.ValidationError) {
-          const errors = err.inner.reduce((acc, error) => {
-            if (error.path) {
-              acc[error.path] = error.message;
-            }
-            return acc;
-          }, {} as { [key: string]: string });
+          const errors = err.inner.reduce(
+            (acc: { [key: string]: string }, error) => {
+              if (error.path)
+                acc[error.path] = error.message;
+
+              return acc;
+            },
+            {}
+          );
           setFormErrors(errors);
         }
       }
     },
-    [contactValidations, formData, initInputVals, localStorageKey, formattedWaitTime]
+    [
+      contactValidations,
+      formData,
+      initInputVals,
+      localStorageKey,
+      formattedWaitTime,
+    ]
   );
 
   useEffect(() => {

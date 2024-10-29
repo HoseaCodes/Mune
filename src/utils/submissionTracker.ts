@@ -1,6 +1,5 @@
 const MAX_SUBMISSIONS = 3;
-// const TIME_WINDOW = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
-const TIME_WINDOW = 100000; // 1 minute in milliseconds for testing purposes
+const TIME_WINDOW = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
 
 export const getSubmissions = (
   localStorageKey: string
