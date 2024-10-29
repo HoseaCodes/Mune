@@ -57,12 +57,47 @@ function useForm(
         [name]: value,
       }));
 
-      setFormErrors((prevErrors) => ({
-        ...prevErrors,
-        [name]: undefined,
-      }));
+      updateFormErrors(name, value);
     },
     []
+  );
+
+  const updateFormErrors = useCallback(
+    async (name: string, value: string) => {
+      const updatedFormData = {
+        ...formData,
+        [name]: value,
+      };
+
+      try {
+        await contactValidations.validate(updatedFormData, {
+          abortEarly: false,
+        });
+
+        setFormErrors((prevErrors) => ({
+          ...prevErrors,
+          [name]: undefined,
+        }));
+      } catch (err) {
+        if (err instanceof yup.ValidationError) {
+          const errors = err.inner.reduce(
+            (acc: { [key: string]: string }, error) => {
+              if (error.path)
+                //@ts-expect-error ...
+                acc[error.path] = error.message.message;
+              return acc;
+            },
+            {}
+          );
+
+          setFormErrors((prevErrors) => ({
+            ...prevErrors,
+            [name]: errors[name],
+          }));
+        }
+      }
+    },
+    [contactValidations, formData]
   );
 
   const handleSubmit = useCallback(
