@@ -28,11 +28,13 @@ function useForm(
   }>({});
   const [buttonDisabled, setButtonDisabled] =
     useState<boolean>(true);
-  const [displaySubmitCard, setDisplaySubmitCard] =
-    useState<boolean>(false);
   const [waitTime, setWaitTime] = useState<number | null>(
     null
   );
+  const [displaySubmitCard, setDisplaySubmitCard] =
+    useState<boolean>(false);
+  const [submitButtonClicked, setSubmitButtonClicked] =
+    useState<boolean>(false);
 
   const formatWaitTime = useCallback((ms: number) => {
     const hours = Math.floor(ms / (1000 * 60 * 60));
@@ -103,6 +105,7 @@ function useForm(
   const handleSubmit = useCallback(
     async (e: FormEvent<HTMLFormElement>) => {
       e.preventDefault();
+      setSubmitButtonClicked(true);
       const submissionStatus = canSubmit(localStorageKey);
 
       try {
@@ -178,6 +181,7 @@ function useForm(
     displaySubmitCard,
     formData,
     formErrors,
+    submitButtonClicked,
     handleChange,
     handleSubmit,
     setDisplaySubmitCard,

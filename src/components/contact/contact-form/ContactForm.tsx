@@ -10,6 +10,7 @@ const ContactForm: React.FC = () => {
     displaySubmitCard,
     formData,
     formErrors,
+    submitButtonClicked,
     handleChange,
     handleSubmit,
     setDisplaySubmitCard,
@@ -47,7 +48,11 @@ const ContactForm: React.FC = () => {
           type="name"
           name="name"
           val={formData.name}
-          validationError={formErrors.name}
+          validationError={
+            submitButtonClicked
+              ? formErrors.name
+              : undefined
+          }
           placeholder="Name"
           handleChange={handleChange}
         />
@@ -55,13 +60,21 @@ const ContactForm: React.FC = () => {
           type="email"
           name="email"
           val={formData.email}
-          validationError={formErrors.email}
+          validationError={
+            submitButtonClicked
+              ? formErrors.email
+              : undefined
+          }
           placeholder="Email"
           handleChange={handleChange}
         />
         <MessageTextArea
           val={formData.message}
-          validationError={formErrors.message}
+          validationError={
+            submitButtonClicked
+              ? formErrors.message
+              : undefined
+          }
           handleChange={handleChange}
         />
         <button
