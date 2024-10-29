@@ -7,13 +7,17 @@ import { contactValidations } from '../../../constants/validationSchemas';
 const ContactForm: React.FC = () => {
   const {
     buttonDisabled,
+    displaySubmitCard,
     formData,
     formErrors,
-    displaySubmitCard,
     handleChange,
     handleSubmit,
     setDisplaySubmitCard,
-  } = useForm(contactValidations, 'contact-form-submissions');
+  } = useForm('contact-form-submissions', contactValidations, {
+    email: '',
+    name: '',
+    message: '',
+  });
 
   return (
     <div className="relative">

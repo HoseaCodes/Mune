@@ -10,27 +10,24 @@ import {
   canSubmit,
 } from '../utils/submissionTracker';
 
-// @ts-expect-error ...
-function useForm(contactValidations, localStorageKey) {
+function useForm(
+  localStorageKey: string,
+  // @ts-expect-error ...
+  contactValidations,
+  initInputVals: {
+    [field: string]: string;
+  }
+) {
   const [formData, setFormData] = useState<{
-    email: string;
-    name: string;
-    message: string;
-  }>({
-    email: '',
-    name: '',
-    message: '',
-  });
+    [field: string]: string;
+  }>(initInputVals);
   const [formErrors, setFormErrors] = useState<{
-    email?: string;
-    name?: string;
-    message?: string;
+    [field: string]: string | undefined;
   }>({});
   const [buttonDisabled, setButtonDisabled] =
     useState<boolean>(true);
   const [displaySubmitCard, setDisplaySubmitCard] =
     useState<boolean>(false);
-
   const [waitTime, setWaitTime] = useState<number | null>(
     null
   );
@@ -73,7 +70,7 @@ function useForm(contactValidations, localStorageKey) {
         addSubmission(localStorageKey, Date.now());
         setWaitTime(null);
 
-        setFormData({ email: '', name: '', message: '' });
+        setFormData(initInputVals);
         setFormErrors({});
         setDisplaySubmitCard(true);
 
@@ -91,19 +88,12 @@ function useForm(contactValidations, localStorageKey) {
       console.log('failure');
 
       if (err instanceof yup.ValidationError) {
-        const errors = err.errors.reduce(
-          (acc, error) => {
-            console.log(error);
-            //@ts-expect-error ...
-            acc[error.field] = error.message;
-            return acc;
-          },
-          {} as {
-            email?: string;
-            name?: string;
-            message?: string;
-          }
-        );
+        const errors = err.errors.reduce((acc, error) => {
+          console.log(error);
+          //@ts-expect-error ...
+          acc[error.field] = error.message;
+          return acc;
+        }, {});
 
         setFormErrors(errors);
       }
@@ -136,9 +126,9 @@ function useForm(contactValidations, localStorageKey) {
 
   return {
     buttonDisabled,
+    displaySubmitCard,
     formData,
     formErrors,
-    displaySubmitCard,
     handleChange,
     handleSubmit,
     setDisplaySubmitCard,
