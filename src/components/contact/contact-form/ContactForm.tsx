@@ -96,7 +96,9 @@ const ContactForm: React.FC = () => {
     e: FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
-    const submissionStatus = canSubmit();
+    const submissionStatus = canSubmit(
+      'contact-form-submissions'
+    );
 
     try {
       await validationSchema.validate(formData, {
@@ -104,7 +106,10 @@ const ContactForm: React.FC = () => {
       });
 
       if (submissionStatus.allowed) {
-        addSubmission(Date.now());
+        addSubmission(
+          'contact-form-submissions',
+          Date.now()
+        );
         setWaitTime(null);
 
         setFormData({ email: '', name: '', message: '' });
@@ -145,12 +150,16 @@ const ContactForm: React.FC = () => {
   };
 
   useEffect(() => {
-    const submissionStatus = canSubmit();
+    const submissionStatus = canSubmit(
+      'contact-form-submissions'
+    );
     setWaitTime(submissionStatus.waitTime || null);
 
     if (submissionStatus.waitTime) {
       const interval = setInterval(() => {
-        const newStatus = canSubmit();
+        const newStatus = canSubmit(
+          'contact-form-submissions'
+        );
         setWaitTime(newStatus.waitTime || null);
 
         if (newStatus.allowed) clearInterval(interval);
