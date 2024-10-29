@@ -13,11 +13,15 @@ const ContactForm: React.FC = () => {
     handleChange,
     handleSubmit,
     setDisplaySubmitCard,
-  } = useForm('contact-form-submissions', contactValidations, {
-    email: '',
-    name: '',
-    message: '',
-  });
+  } = useForm(
+    'contact-form-submissions',
+    contactValidations,
+    {
+      email: '',
+      name: '',
+      message: '',
+    }
+  );
 
   return (
     <div className="relative">

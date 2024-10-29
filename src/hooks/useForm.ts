@@ -95,8 +95,8 @@ function useForm(
           const errors = err.inner.reduce(
             (acc: { [key: string]: string }, error) => {
               if (error.path)
-                acc[error.path] = error.message;
-
+                //@ts-expect-error ...
+                acc[error.path] = error.message.message;
               return acc;
             },
             {}
