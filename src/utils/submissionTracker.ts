@@ -1,6 +1,6 @@
-const SUBMISSION_KEY = "contactFormSubmissions";
+const SUBMISSION_KEY = 'contactFormSubmissions';
 const MAX_SUBMISSIONS = 3;
-const TIME_WINDOW = 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+const TIME_WINDOW = 100000;
 
 export const getSubmissions = (): number[] => {
   const submissions = localStorage.getItem(SUBMISSION_KEY);
@@ -10,17 +10,26 @@ export const getSubmissions = (): number[] => {
 export const addSubmission = (timestamp: number): void => {
   const submissions = getSubmissions();
   submissions.push(timestamp);
-  localStorage.setItem(SUBMISSION_KEY, JSON.stringify(submissions));
+  localStorage.setItem(
+    SUBMISSION_KEY,
+    JSON.stringify(submissions)
+  );
 };
 
 export const clearOldSubmissions = (): void => {
   const submissions = getSubmissions().filter(
     (timestamp) => Date.now() - timestamp < TIME_WINDOW
   );
-  localStorage.setItem(SUBMISSION_KEY, JSON.stringify(submissions));
+  localStorage.setItem(
+    SUBMISSION_KEY,
+    JSON.stringify(submissions)
+  );
 };
 
-export const canSubmit = (): { allowed: boolean; waitTime?: number } => {
+export const canSubmit = (): {
+  allowed: boolean;
+  waitTime?: number;
+} => {
   clearOldSubmissions();
   const submissions = getSubmissions();
 
@@ -29,6 +38,7 @@ export const canSubmit = (): { allowed: boolean; waitTime?: number } => {
   }
 
   const oldestSubmission = submissions[0];
-  const waitTime = TIME_WINDOW - (Date.now() - oldestSubmission);
+  const waitTime =
+    TIME_WINDOW - (Date.now() - oldestSubmission);
   return { allowed: false, waitTime };
 };

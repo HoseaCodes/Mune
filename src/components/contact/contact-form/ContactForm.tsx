@@ -7,6 +7,10 @@ import React, {
 import TextField from './TextField';
 import MessageTextArea from './MessageTextArea';
 import * as yup from 'yup';
+import {
+  addSubmission,
+  canSubmit,
+} from '../../../utils/submissionTracker';
 
 const validationSchema = yup.object().shape({
   email: yup
@@ -61,6 +65,18 @@ const ContactForm: React.FC = () => {
   const [displaySubmitCard, setDisplaySubmitCard] =
     useState<boolean>(false);
 
+  const [waitTime, setWaitTime] = useState<number | null>(
+    null
+  );
+
+  const formatWaitTime = (ms: number) => {
+    const hours = Math.floor(ms / (1000 * 60 * 60));
+    const minutes = Math.floor(
+      (ms % (1000 * 60 * 60)) / (1000 * 60)
+    );
+    return `${hours}h ${minutes}m`;
+  };
+
   const handleChange = (
     e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -80,16 +96,31 @@ const ContactForm: React.FC = () => {
     e: FormEvent<HTMLFormElement>
   ) => {
     e.preventDefault();
+    const submissionStatus = canSubmit();
 
     try {
       await validationSchema.validate(formData, {
         abortEarly: false,
       });
 
-      console.log('success');
-      setFormData({ email: '', name: '', message: '' });
-      setFormErrors({});
-      setDisplaySubmitCard(true);
+      if (submissionStatus.allowed) {
+        addSubmission(Date.now());
+        setWaitTime(null);
+
+        setFormData({ email: '', name: '', message: '' });
+        setFormErrors({});
+        setDisplaySubmitCard(true);
+
+        alert('Form submitted successfully!');
+      } else {
+        setWaitTime(
+          submissionStatus.waitTime as number | null
+        );
+
+        alert(
+          `You must wait for ${formatWaitTime(waitTime as number)} until next submission.`
+        );
+      }
     } catch (err) {
       console.log('failure');
 
@@ -112,6 +143,22 @@ const ContactForm: React.FC = () => {
       }
     }
   };
+
+  useEffect(() => {
+    const submissionStatus = canSubmit();
+    setWaitTime(submissionStatus.waitTime || null);
+
+    if (submissionStatus.waitTime) {
+      const interval = setInterval(() => {
+        const newStatus = canSubmit();
+        setWaitTime(newStatus.waitTime || null);
+
+        if (newStatus.allowed) clearInterval(interval);
+      }, 1000);
+
+      return () => clearInterval(interval);
+    }
+  }, []);
 
   useEffect(
     () =>
