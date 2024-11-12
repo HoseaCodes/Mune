@@ -8,6 +8,7 @@ import heroVideo from '../../assets/videos/hero.mp4';
 import heroImage from '../../assets/images/hero.png';
 import GoogleIcon from '../GoogleIcon';
 import AppleIcon from '../AppleIcon';
+import HeroSignUpForm from './HeroSignUpForm';
 
 const Hero = () => {
   const [isVideoPlaying, setIsVideoPlaying] =
@@ -44,19 +45,7 @@ const Hero = () => {
               Easy Payments. <br />
               Make Mun-e Moves.
             </div>
-            <form className="hidden sm:block">
-              <div className="border-2 border-[#CEE0D0] flex justify-between items-center w-[412px] rounded-[14px] h-[60px]">
-                <input
-                  className="w-webkit-fill-available appearance-none placeholder:text-sm placeholder:text-stone-100 bg-transparent rounded py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
-                  id="username"
-                  type="text"
-                  placeholder="Enter your mobile number"
-                />
-                <button className="h-11 rounded-xl text-stone-100 me-2 text-[15px] font-semibold px-6">
-                  Get Mun-e
-                </button>
-              </div>
-            </form>
+            <HeroSignUpForm />
             <div className="hidden sm:flex gap-3 items-center">
               <a href="#/">
                 <img src={GooglePlay} alt="Google Play" />

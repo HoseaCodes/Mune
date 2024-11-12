@@ -134,7 +134,7 @@ function useForm(
             (acc: { [key: string]: string }, error) => {
               if (error.path)
                 //@ts-expect-error ...
-                acc[error.path] = error.message.message;
+              acc[error.path] = error.message.message ? error.message.message : error.message;
               return acc;
             },
             {}

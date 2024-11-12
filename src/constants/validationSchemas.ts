@@ -32,3 +32,13 @@ export const contactValidations = yup.object().shape({
       message: 'Message must not exceed 250 characters',
     }),
 });
+
+export const heroSignUpValidations = yup.object().shape({
+  phoneNumber: yup
+    .string()
+    .required('Phone number is required')
+    .matches(
+      /^(\+\d{1,3}[- ]?)?\d{10}$/,
+      'please enter a valid phone number'
+    )
+});
