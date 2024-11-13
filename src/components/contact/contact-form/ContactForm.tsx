@@ -25,7 +25,7 @@ const ContactForm: React.FC = () => {
   );
 
   return (
-    <div className="relative">
+    <div className="relative w-full">
       {displaySubmitCard && (
         <div className="absolute z-10 bg-[#1AAE33] h-full w-full px-4 py-8 rounded-[48px]">
           <p className="text-white">
