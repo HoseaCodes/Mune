@@ -1,6 +1,6 @@
 import React from 'react';
 import useForm from '../../hooks/useForm';
-import { heroSignUpValidations } from '../../constants/validationSchemas';
+import { signUpValidations } from '../../constants/validationSchemas';
 
 const HeroSignUpForm: React.FC = () => {
   const {
@@ -13,8 +13,8 @@ const HeroSignUpForm: React.FC = () => {
     handleSubmit,
     // setDisplaySubmitCard,
   } = useForm(
-    'hero-signup-form-submissions',
-    heroSignUpValidations,
+    'signup-form-submissions',
+    signUpValidations,
     {
       phoneNumber: '',
     }

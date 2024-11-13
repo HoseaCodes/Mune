@@ -1,11 +1,12 @@
 import React from 'react';
-import Logo from '../assets/logo/logo-white.svg';
-import FbIcon from '../assets/icons/fb.svg';
-import InstaIcon from '../assets/icons/insta.svg';
-import TiktokIcon from '../assets/icons/tiktok.svg';
-import WhatsappIcon from '../assets/icons/whatsapp.svg';
-import AppleIcon from './AppleIcon';
-import GoogleIcon from './GoogleIcon';
+import Logo from '../../assets/logo/logo-white.svg';
+import FbIcon from '../../assets/icons/fb.svg';
+import InstaIcon from '../../assets/icons/insta.svg';
+import TiktokIcon from '../../assets/icons/tiktok.svg';
+import WhatsappIcon from '../../assets/icons/whatsapp.svg';
+import AppleIcon from '../AppleIcon';
+import GoogleIcon from '../GoogleIcon';
+import FooterSignUpForm from './FooterSignUpForm';
 
 const Footer: React.FC = () => {
   return (
@@ -21,19 +22,7 @@ const Footer: React.FC = () => {
           <br className="block md:hidden" />
           Sign Up Now.
         </div>
-        <form className="hidden md:block">
-          <div className="border-2 border-neutral-300 bg-stone-100 flex justify-between items-center w-[412px] rounded-[14px] h-12">
-            <input
-              className="w-webkit-fill-available appearance-none placeholder:text-sm placeholder:text-black  bg-transparent rounded py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-              id="username"
-              type="text"
-              placeholder="Enter your mobile number"
-            />
-            <button className="button-three w-[131px] h-[32px] text-[12px] me-2 text-stone-100 font-semibold rounded-xl hover:shadow-green-500/50 shadow-green-500/80 shadow-md">
-              Get Mun-e
-            </button>
-          </div>
-        </form>
+        <FooterSignUpForm />
         <form className="w-[240px] md:hidden">
           <div className="border-2 bg-white px-2 border-neutral-300 flex justify-start gap-2 items-center rounded-[12px] h-[44px]">
             <img src={WhatsappIcon} alt="" />

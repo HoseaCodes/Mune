@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Footer from '../components/Footer/Footer';
 import LessonCard from '../components/LessonCard';
 import TrendingCard from '../components/TrendingCard';
 import StayTunedSection from '../components/StayTuned';

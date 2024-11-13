@@ -33,7 +33,7 @@ export const contactValidations = yup.object().shape({
     }),
 });
 
-export const heroSignUpValidations = yup.object().shape({
+export const signUpValidations = yup.object().shape({
   phoneNumber: yup
     .string()
     .required('Phone number is required')
