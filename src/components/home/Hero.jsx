@@ -54,22 +54,6 @@ const Hero = () => {
                 <img src={AppStore} alt="App Store" />
               </a>
             </div>
-            {/* <div className="sm:hidden flex justify-center items-center w-full">
-              <form className="w-[240px]">
-                <div className="border-2 bg-white px-2 border-neutral-300 flex justify-start gap-2 items-center rounded-[12px] h-[44px]">
-                  <img
-                    src={WhatsappIcon}
-                    alt="WhatsApp Icon"
-                  />
-                  <input
-                    className="w-webkit-fill-available appearance-none placeholder:text-sm placeholder:text-black bg-transparent rounded text-black leading-tight focus:outline-none focus:shadow-outline"
-                    id="username"
-                    type="text"
-                    placeholder="Enter your mobile number"
-                  />
-                </div>
-              </form>
-            </div> */}
           </div>
         </div>
         <button

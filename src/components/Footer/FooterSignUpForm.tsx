@@ -1,6 +1,8 @@
 import React from 'react';
 import useForm from '../../hooks/useForm';
 import { signUpValidations } from '../../constants/validationSchemas';
+import WhatsappIcon from '../../assets/icons/whatsapp.svg';
+import useWindowWidth from '../../hooks/useWindowWidth';
 
 const FooterSignUpForm: React.FC = () => {
   const {
@@ -20,17 +22,25 @@ const FooterSignUpForm: React.FC = () => {
     }
   );
 
-  const validationError = submitButtonClicked
-    ? formErrors.phoneNumber
-    : undefined;
+  const windowWidth = useWindowWidth();
+  const isScreenBelow900px = windowWidth && windowWidth <= 900;
+
+  const validationError = submitButtonClicked ? formErrors.phoneNumber : undefined;
+
+  const phoneNumberFilled = formData.phoneNumber.length === 10;
 
   return (
-    <form
+    <form 
       noValidate
       onSubmit={handleSubmit}
-      className="hidden md:block"
+      className="flex flex-col gap-2 items-center"
     >
-      <div className="border-2 border-neutral-300 bg-stone-100 flex justify-between items-center w-[412px] rounded-[14px] h-12">
+      <div className={`border-2 p-2 ${validationError ? "border-[#ED4337] bg-[#ED4337]/25" : "border-[#010A03] laptop:border-[#CEE0D0] bg-white"} flex gap-2 items-center w-[240px] laptop:w-[412px] rounded-[30px] laptop:rounded-[14px] h-[44px] laptop:h-[60px]`}>
+        <img
+          src={WhatsappIcon}
+          alt="WhatsApp Icon"
+          className='laptop:hidden'
+        />
         <input
           required
           id="phone"
@@ -39,14 +49,15 @@ const FooterSignUpForm: React.FC = () => {
           maxLength={10}
           value={formData.phoneNumber}
           onChange={handleChange}
-          className="w-webkit-fill-available appearance-none placeholder:text-sm placeholder:text-black  bg-transparent rounded py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"
-          placeholder="Enter your phone number"
+          className="block border-none w-full h-full bg-transparent rounded-3xl laptop:rounded-xl focus:outline-none placeholder-[#010A03] text-[#010A03] text-xs laptop:text-base font-sf-pro"
+          placeholder="Enter your mobile number"
         />
-        {validationError && <p>{validationError}</p>}
-        <button className="button-three w-[131px] h-[32px] text-[12px] me-2 text-stone-100 font-semibold rounded-xl hover:shadow-green-500/50 shadow-green-500/80 shadow-md">
-          Get Mun-e
+        <button 
+          className={`${phoneNumberFilled ? "flex" : "hidden"} laptop:flex h-full bg-[#1AAE33] max-w-fit items-center w-full px-3 py-4 laptop:px-6 laptop:py-3 rounded-[30px] laptop:rounded-xl text-stone-100 text-[15px] font-semibold`}>
+          {isScreenBelow900px ? "Submit" : "Get Mun-e"}
         </button>
       </div>
+      {validationError && <p className="text-[#ED4337] font-semibold">{validationError}</p>}
     </form>
   );
 };

@@ -3,7 +3,6 @@ import Logo from '../../assets/logo/logo-white.svg';
 import FbIcon from '../../assets/icons/fb.svg';
 import InstaIcon from '../../assets/icons/insta.svg';
 import TiktokIcon from '../../assets/icons/tiktok.svg';
-import WhatsappIcon from '../../assets/icons/whatsapp.svg';
 import AppleIcon from '../AppleIcon';
 import GoogleIcon from '../GoogleIcon';
 import FooterSignUpForm from './FooterSignUpForm';
@@ -23,17 +22,6 @@ const Footer: React.FC = () => {
           Sign Up Now.
         </div>
         <FooterSignUpForm />
-        <form className="w-[240px] md:hidden">
-          <div className="border-2 bg-white px-2 border-neutral-300 flex justify-start gap-2 items-center rounded-[12px] h-[44px]">
-            <img src={WhatsappIcon} alt="" />
-            <input
-              className="w-webkit-fill-available appearance-none placeholder:text-sm placeholder:text-black  bg-transparent rounded  text-black leading-tight focus:outline-none focus:shadow-outline"
-              id="username"
-              type="text"
-              placeholder="Enter your mobile number"
-            />
-          </div>
-        </form>
       </div>
       <div className="md:grid grid-cols-2 mt-8 md:mt-28">
         <div className="flex flex-col gap-8 justify-start">
