@@ -28,22 +28,20 @@ const HeroSignUpForm: React.FC = () => {
       onSubmit={handleSubmit}
       className="hidden sm:block"
     >
-      <div className="border-2 border-[#CEE0D0] flex justify-between items-center w-[412px] rounded-[14px] h-[60px]">
-      <div>
-    <input
-      required
-      id="phone"
-      type="tel"
-      name="phoneNumber"
-      value={formData.phoneNumber}
-      onChange={handleChange}
-      className="block w-full py-2 px-6 laptop:py-3 bg-white border border-gray-300 rounded-3xl laptop:rounded-xl shadow-sm focus:outline-none focus:ring-slate-400 focus:border-slate-400 text-black text-base placeholder-[#010A0399] font-semibold font-sf-pro"
-      placeholder="Phone Number"
-    />
-    {validationError && <p>{validationError}</p>}
-  </div>
+      <div className="border-2 p-2 bg-[#010A0340]/25 border-[#CEE0D0] flex gap-2 items-center w-[412px] rounded-[14px] h-[60px]">
+        <input
+          required
+          id="phone"
+          type="tel"
+          name="phoneNumber"
+          value={formData.phoneNumber}
+          onChange={handleChange}
+          className="block border-none w-full h-full bg-transparent border border-gray-300 rounded-3xl laptop:rounded-xl shadow-sm focus:outline-none focus:ring-slate-400 focus:border-slate-400 placeholder-white text-white text-base font-sf-pro"
+          placeholder="Enter your mobile number"
+        />
+        {validationError && <p>{validationError}</p>}
         <button 
-          className="h-11 rounded-xl text-stone-100 me-2 text-[15px] font-semibold px-6">
+          className="h-full max-w-fit flex items-center w-full px-6 py-3 rounded-xl text-stone-100 text-[15px] font-semibold">
           Get Mun-e
         </button>
       </div>
