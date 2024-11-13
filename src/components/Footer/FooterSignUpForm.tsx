@@ -36,6 +36,7 @@ const FooterSignUpForm: React.FC = () => {
           id="phone"
           type="tel"
           name="phoneNumber"
+          maxLength={10}
           value={formData.phoneNumber}
           onChange={handleChange}
           className="w-webkit-fill-available appearance-none placeholder:text-sm placeholder:text-black  bg-transparent rounded py-2 px-3 text-black leading-tight focus:outline-none focus:shadow-outline"

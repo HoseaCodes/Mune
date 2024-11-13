@@ -3,7 +3,7 @@ import GooglePlay from '../../assets/images/google-play.svg';
 import AppStore from '../../assets/images/app-store.svg';
 import PlayIcon from '../../assets/icons/play.svg';
 import PauseIcon from '../../assets/icons/pause.png';
-import WhatsappIcon from '../../assets/icons/whatsapp.svg';
+// import WhatsappIcon from '../../assets/icons/whatsapp.svg';
 import heroVideo from '../../assets/videos/hero.mp4';
 import heroImage from '../../assets/images/hero.png';
 import GoogleIcon from '../GoogleIcon';
@@ -54,7 +54,7 @@ const Hero = () => {
                 <img src={AppStore} alt="App Store" />
               </a>
             </div>
-            <div className="sm:hidden flex justify-center items-center w-full">
+            {/* <div className="sm:hidden flex justify-center items-center w-full">
               <form className="w-[240px]">
                 <div className="border-2 bg-white px-2 border-neutral-300 flex justify-start gap-2 items-center rounded-[12px] h-[44px]">
                   <img
@@ -69,7 +69,7 @@ const Hero = () => {
                   />
                 </div>
               </form>
-            </div>
+            </div> */}
           </div>
         </div>
         <button
