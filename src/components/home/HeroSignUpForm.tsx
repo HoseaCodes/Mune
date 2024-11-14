@@ -3,17 +3,17 @@ import useForm from '../../hooks/useForm';
 import { signUpValidations } from '../../constants/validationSchemas';
 import WhatsappIcon from '../../assets/icons/whatsapp.svg';
 import useWindowWidth from '../../hooks/useWindowWidth';
+import FormSubmitCard from '../Footer/FormSubmitCard';
 
 const HeroSignUpForm: React.FC = () => {
   const {
-    // buttonDisabled,
-    // displaySubmitCard,
+    displaySubmitCard,
     formData,
     formErrors,
+    exceededSubmissions,
     submitButtonClicked,
     handleChange,
     handleSubmit,
-    // setDisplaySubmitCard,
   } = useForm(
     'signup-form-submissions',
     signUpValidations,
@@ -29,7 +29,12 @@ const HeroSignUpForm: React.FC = () => {
 
   const phoneNumberFilled = formData.phoneNumber.length === 10;
 
-  return (
+  return displaySubmitCard ? (
+    <FormSubmitCard
+      forHeroSignup
+      exceededSubmissions={exceededSubmissions}
+    />
+  ) : (
     <form 
       noValidate
       onSubmit={handleSubmit}
