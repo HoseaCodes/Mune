@@ -119,7 +119,6 @@ function useForm(
           setFormData(initInputVals);
           setFormErrors({});
           setDisplaySubmitCard(true);
-          alert('Form submitted successfully!');
         } else {
           setWaitTime(
             submissionStatus.waitTime as number | null
