@@ -3,14 +3,15 @@ import TextField from './TextField';
 import MessageTextArea from './MessageTextArea';
 import useForm from '../../../hooks/useForm';
 import { contactValidations } from '../../../constants/validationSchemas';
-import ContactSuccessCard from './ContactSuccessCard';
+import ContactResultCard from './ContactResultCard';
 
 const ContactForm: React.FC = () => {
   const {
     buttonDisabled,
-    // displaySubmitCard,
+    displaySubmitCard,
     formData,
     formErrors,
+    exceededSubmissions,
     submitButtonClicked,
     handleChange,
     handleSubmit,
@@ -27,11 +28,12 @@ const ContactForm: React.FC = () => {
 
   return (
     <div className="relative w-full">
-      {/* {displaySubmitCard && ( */}
-      <ContactSuccessCard
-        setDisplaySubmitCard={setDisplaySubmitCard}
-      />
-      {/* )} */}
+      {displaySubmitCard && (
+        <ContactResultCard
+          exceededSubmissions={exceededSubmissions}
+          setDisplaySubmitCard={setDisplaySubmitCard}
+        />
+      )}
       <form
         noValidate
         onSubmit={handleSubmit}

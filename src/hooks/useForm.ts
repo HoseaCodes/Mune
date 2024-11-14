@@ -28,6 +28,7 @@ function useForm(
   }>({});
   const [buttonDisabled, setButtonDisabled] =
     useState<boolean>(true);
+  const [exceededSubmissions, setExceededSubmissions]=  useState<boolean>(false);
   const [waitTime, setWaitTime] = useState<number | null>(
     null
   );
@@ -120,11 +121,10 @@ function useForm(
           setFormErrors({});
           setDisplaySubmitCard(true);
         } else {
+          setExceededSubmissions(true);
+          setDisplaySubmitCard(true);
           setWaitTime(
             submissionStatus.waitTime as number | null
-          );
-          alert(
-            `You must wait for ${formattedWaitTime} until next submission.`
           );
         }
       } catch (err) {
@@ -178,6 +178,7 @@ function useForm(
   return {
     buttonDisabled,
     displaySubmitCard,
+    exceededSubmissions,
     formData,
     formErrors,
     submitButtonClicked,
