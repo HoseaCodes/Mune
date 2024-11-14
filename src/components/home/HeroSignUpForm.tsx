@@ -2,6 +2,7 @@ import React from 'react';
 import useForm from '../../hooks/useForm';
 import { signUpValidations } from '../../constants/validationSchemas';
 import WhatsappIcon from '../../assets/icons/whatsapp.svg';
+import WhatsappIconRed from '../../assets/icons/whatsapp-red.svg';
 import useWindowWidth from '../../hooks/useWindowWidth';
 import FormSubmitCard from '../Footer/FormSubmitCard';
 
@@ -42,7 +43,9 @@ const HeroSignUpForm: React.FC = () => {
     >
       <div className={`border-2 p-2 ${validationError ? "border-[#E95F43] bg-[#F5C6C1]" : "border-[#CEE0D0] bg-white laptop:bg-[#010A0340]/25"} flex gap-2 items-center w-[240px] laptop:w-[412px] rounded-[14px] h-[44px] laptop:h-[60px]`}>
         <img
-          src={WhatsappIcon}
+          src={
+            validationError ? WhatsappIconRed : WhatsappIcon
+          }
           alt="WhatsApp Icon"
           className='laptop:hidden'
         />
