@@ -15,11 +15,11 @@ const MessageTextArea: React.FC<{
       onChange={handleChange}
       required
       rows={6}
-      className={`block ${validationError ? 'border-[#ED4337] border-4 bg-[#FFC3C3]' : 'border-[#CEE0D0] bg-white focus:border-slate-400'} w-full py-2 px-6 laptop:py-3 border rounded-3xl laptop:rounded-xl shadow-sm focus:outline-none text-black text-base placeholder-[#010A0399] font-semibold font-sf-pro`}
+      className={`block ${validationError ? 'border-[#E95F43] border-4 bg-[#F5C6C1] text-[#E95F43]' : 'border-[#CEE0D0] bg-white focus:border-slate-400 text-black'} w-full py-2 px-6 laptop:py-3 border rounded-3xl laptop:rounded-xl shadow-sm focus:outline-none text-base placeholder-[#010A0399] font-medium font-sf-pro`}
       placeholder="Message"
     />
     {validationError && (
-      <p className="text-[#FFC3C3] ml-2">
+      <p className="text-[#F5C6C1] ml-2 mt-2 font-medium">
         {validationError}
       </p>
     )}{' '}

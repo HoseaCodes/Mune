@@ -37,7 +37,7 @@ const ContactForm: React.FC = () => {
       <form
         noValidate
         onSubmit={handleSubmit}
-        className="space-y-6 bg-[#1AAE33] px-4 py-8 rounded-[48px] w-full"
+        className="space-y-6 bg-[#1AAE33] px-4 laptop:px-6 py-6 laptop:py-8 rounded-[24px] w-full"
       >
         <TextField
           type="name"

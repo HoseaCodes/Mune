@@ -5,14 +5,14 @@ const ContactResultCard: React.FC<{
   exceededSubmissions: boolean;
   setDisplaySubmitCard: Dispatch<SetStateAction<boolean>>;
 }> = ({ exceededSubmissions, setDisplaySubmitCard }) => (
-  <div className="absolute flex flex-col justify-between items-start z-10 bg-[#1AAE33] h-full w-full px-4 py-8 rounded-[48px]">
+  <div className="absolute flex flex-col justify-between items-start z-10 bg-[#1AAE33] h-full w-full px-4 laptop:px-6 py-6 laptop:py-8 rounded-[48px]">
     <div className="flex flex-col gap-4">
       <p className="text-white font-bold text-xl">
         {exceededSubmissions
           ? 'Oops!'
           : 'Thanks for Contacting Us.'}
       </p>
-      <p className="text-white text-xl">
+      <p className="text-white font-medium text-xl">
         {exceededSubmissions
           ? "We've reached the maximum number of messages allowed."
           : "We'll get back to you shortly!"}
@@ -28,7 +28,7 @@ const ContactResultCard: React.FC<{
       </p>
       {!exceededSubmissions && (
         <button
-          className="text-white underline"
+          className="text-white font-medium underline"
           onClick={() => setDisplaySubmitCard(false)}
         >
           Contact Us
