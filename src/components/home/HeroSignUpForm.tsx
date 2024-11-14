@@ -40,7 +40,7 @@ const HeroSignUpForm: React.FC = () => {
       onSubmit={handleSubmit}
       className="flex flex-col gap-2"
     >
-      <div className={`border-2 p-2 ${validationError ? "border-[#ED4337] bg-[#ED4337]/25" : "border-[#CEE0D0] bg-white laptop:bg-[#010A0340]/25"} flex gap-2 items-center w-[240px] laptop:w-[412px] rounded-[14px] h-[44px] laptop:h-[60px]`}>
+      <div className={`border-2 p-2 ${validationError ? "border-[#E95F43] bg-[#F5C6C1]" : "border-[#CEE0D0] bg-white laptop:bg-[#010A0340]/25"} flex gap-2 items-center w-[240px] laptop:w-[412px] rounded-[14px] h-[44px] laptop:h-[60px]`}>
         <img
           src={WhatsappIcon}
           alt="WhatsApp Icon"
@@ -54,7 +54,7 @@ const HeroSignUpForm: React.FC = () => {
           maxLength={10}
           value={formData.phoneNumber}
           onChange={handleChange}
-          className="block border-none w-full h-full bg-transparent rounded-3xl laptop:rounded-xl focus:outline-none placeholder-[#010A03] text-[#010A03] laptop:placeholder-white laptop:text-white text-xs laptop:text-base font-sf-pro"
+          className="block border-none w-full h-full bg-transparent rounded-3xl laptop:rounded-xl focus:outline-none placeholder-[#010A03] text-[#010A03] laptop:placeholder-white text-xs laptop:text-base font-sf-pro"
           placeholder="Enter your mobile number"
         />
         <button 
@@ -62,7 +62,7 @@ const HeroSignUpForm: React.FC = () => {
           {isScreenBelow900px ? "Submit" : "Get Mun-e"}
         </button>
       </div>
-      {validationError && <p className="text-[#ED4337] font-semibold">{validationError}</p>}
+      {validationError && <p className="text-[#E95F43] font-semibold text-center mobile:text-start">{validationError}</p>}
     </form>
   );
 };

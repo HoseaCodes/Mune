@@ -44,7 +44,7 @@ const FooterSignUpForm: React.FC = () => {
       className="flex flex-col gap-2 items-center"
     >
       <div
-        className={`border-2 p-2 ${validationError ? 'border-[#ED4337] bg-[#ED4337]/25' : 'border-[#010A03] laptop:border-[#CEE0D0] bg-white'} flex gap-2 items-center w-[240px] laptop:w-[412px] rounded-[30px] laptop:rounded-[14px] h-[44px] laptop:h-[60px]`}
+        className={`border-2 p-2 ${validationError ? 'border-[#E95F43] bg-[#F5C6C1]' : 'border-[#010A03] laptop:border-[#CEE0D0] bg-white'} flex gap-2 items-center w-[240px] laptop:w-[412px] rounded-[30px] laptop:rounded-[14px] h-[44px] laptop:h-[60px]`}
       >
         <img
           src={WhatsappIcon}
@@ -69,7 +69,7 @@ const FooterSignUpForm: React.FC = () => {
         </button>
       </div>
       {validationError && (
-        <p className="text-[#ED4337] font-semibold">
+        <p className="text-[#E95F43] font-semibold text-center">
           {validationError}
         </p>
       )}
