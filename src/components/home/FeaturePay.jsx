@@ -5,19 +5,21 @@ import GlowButton from '../button/Glow';
 
 const FeaturePay = () => {
   return (
-    <div className="flex flex-col-reverse tablet:flex-row-reverse md:flex-row items-center justify-between gap-10">
+    <div className="flex flex-col-reverse tablet:flex-row-reverse laptop:flex-row items-center justify-between gap-6 laptop:gap-10 tablet:pl-6 laptop:pr-12 mt-[120px]">
       <div className='flex-1'>
-        <img src={PlayMockup} className="hidden md:block w-full object-contain" alt="" />
-        <img src={PayMobileMockup} className="md:hidden" alt="" />
+        <img src={PlayMockup} className="hidden laptop:block w-full object-contain" alt="" />
+        <img src={PayMobileMockup} className="laptop:hidden" alt="" />
       </div>
-      <div className="flex flex-1 items-center">
-        <div className="space-y-4">
-          <div className="text-[22px] md:text-4xl font-bold">Pay Friends</div>
-          <div className="primary-text w-full md:max-w-[525px]">
+      <div className="flex flex-1 tablet:mb-28 px-4 tablet:p-0">
+        <div className="space-y-8">
+          <div className="space-y-4">
+          <div className="text-3xl laptop:text-4xl font-bold">Pay Friends</div>
+          <div className="text-[13px] tablet:text-base laptop:text-2xl w-full laptop:max-w-[525px]">
             Split bills and share costs effortlessly. Mun-e lets you settle up instantly, keeping
             group expenses simple and stress-free.
           </div>
-          <div className="hidden md:block">
+          </div>
+          <div className="hidden laptop:block">
             <GlowButton color="green">Get Mun-e</GlowButton>
           </div>
         </div>

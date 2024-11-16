@@ -23,7 +23,7 @@ const MeetTheTeam: React.FC = () => {
 
   return (
     <div
-      className={`${isExpanded === activeIndex && 'overflow-hidden'} bg-gray-100 max-w-[1184px] w-full flex flex-col gap-6 tablet:gap-20 laptop:my-32 tablet:my-24 my-[120px]`}
+      className={`${isExpanded === activeIndex && 'overflow-hidden'} max-w-[1184px] w-full flex flex-col gap-6 tablet:gap-20 laptop:my-32 tablet:my-24 my-[120px]`}
     >
       <div className="flex flex-col justify-center gap-10">
         <h2 className="tablet:mx-6 laptop:mx-12 text-2xl tablet:text-3xl laptop:text-5xl text-center tablet:text-left font-bold">
