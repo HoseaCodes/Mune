@@ -4,7 +4,7 @@ import {
   TeamImages,
 } from '../styles/ContactStyles';
 import Header from '../components/Header';
-import Footer from '../components/Footer';
+import Footer from '../components/Footer/Footer';
 import MarquesZahir from '../assets/Marques-Zahir.png'; // Replace with actual image path
 import CaseyBass from '../assets/Casey-Bass.png'; // Replace with actual image path
 import DanaSimone from '../assets/Dana-Simone.png'; // Replace with actual image path

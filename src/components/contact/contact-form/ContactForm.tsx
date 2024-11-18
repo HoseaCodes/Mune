@@ -1,68 +1,86 @@
-import React, {
-  ChangeEvent,
-  FormEvent,
-  useState,
-} from 'react';
+import React from 'react';
 import TextField from './TextField';
 import MessageTextArea from './MessageTextArea';
+import useForm from '../../../hooks/useForm';
+import { contactValidations } from '../../../constants/validationSchemas';
+import ContactResultCard from './ContactResultCard';
 
 const ContactForm: React.FC = () => {
-  const [formData, setFormData] = useState<{
-    email: string;
-    name: string;
-    message: string;
-  }>({
-    email: '',
-    name: '',
-    message: '',
-  });
-
-  const handleChange = (
-    e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
-
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    // Add submission logic here...
-    setFormData({ email: '', name: '', message: '' });
-  };
+  const {
+    buttonDisabled,
+    displaySubmitCard,
+    formData,
+    formErrors,
+    exceededSubmissions,
+    submitButtonClicked,
+    handleChange,
+    handleSubmit,
+    setDisplaySubmitCard,
+  } = useForm(
+    'contact-form-submissions',
+    contactValidations,
+    {
+      email: '',
+      name: '',
+      message: '',
+    }
+  );
 
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="space-y-6 bg-[#1AAE33] px-4 py-8 rounded-[48px] w-full"
-    >
-      <TextField
-        type="name"
-        name="name"
-        val={formData.name}
-        placeholder="Name"
-        handleChange={handleChange}
-      />
-      <TextField
-        type="email"
-        name="email"
-        val={formData.email}
-        placeholder="Email"
-        handleChange={handleChange}
-      />
-      <MessageTextArea
-        val={formData.message}
-        handleChange={handleChange}
-      />
-      <button
-        type="submit"
-        className="w-content flex justify-center py-3 px-6 border-2 border-[#CEE0D0] rounded-xl shadow-sm text-base bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-400 text-black font-semibold"
+    <div className="relative w-full">
+      {displaySubmitCard && (
+        <ContactResultCard
+          exceededSubmissions={exceededSubmissions}
+          setDisplaySubmitCard={setDisplaySubmitCard}
+        />
+      )}
+      <form
+        noValidate
+        onSubmit={handleSubmit}
+        className="space-y-6 bg-[#1AAE33] px-4 laptop:px-6 py-6 laptop:py-8 rounded-[24px] w-full"
       >
-        Submit
-      </button>
-    </form>
+        <TextField
+          type="name"
+          name="name"
+          val={formData.name}
+          validationError={
+            submitButtonClicked
+              ? formErrors.name
+              : undefined
+          }
+          placeholder="Name"
+          handleChange={handleChange}
+        />
+        <TextField
+          type="email"
+          name="email"
+          val={formData.email}
+          validationError={
+            submitButtonClicked
+              ? formErrors.email
+              : undefined
+          }
+          placeholder="Email"
+          handleChange={handleChange}
+        />
+        <MessageTextArea
+          val={formData.message}
+          validationError={
+            submitButtonClicked
+              ? formErrors.message
+              : undefined
+          }
+          handleChange={handleChange}
+        />
+        <button
+          disabled={buttonDisabled}
+          type="submit"
+          className={`${buttonDisabled && 'opacity-50'} w-content flex justify-center py-3 px-6 border-2 border-[#CEE0D0] rounded-xl shadow-sm text-base bg-white focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-slate-400 text-black font-semibold`}
+        >
+          Submit
+        </button>
+      </form>
+    </div>
   );
 };
 

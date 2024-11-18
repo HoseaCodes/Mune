@@ -7,7 +7,7 @@ import NotificationBubble from '../components/NotificationBubbleCard';
 import WhiteMuneButton from '../components/WhiteMuneButton';
 import MeetTheTeam from '../components/meet-the-team/MeetTheTeam';
 import MissionSection from '../components/Mission';
-import Footer from '../components/Footer';
+import Footer from '../components/Footer/Footer';
 import Header from '../components/Header';
 import GlowButton from '../components/button/Glow';
 

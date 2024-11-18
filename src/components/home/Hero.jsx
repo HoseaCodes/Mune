@@ -3,11 +3,12 @@ import GooglePlay from '../../assets/images/google-play.svg';
 import AppStore from '../../assets/images/app-store.svg';
 import PlayIcon from '../../assets/icons/play.svg';
 import PauseIcon from '../../assets/icons/pause.png';
-import WhatsappIcon from '../../assets/icons/whatsapp.svg';
+// import WhatsappIcon from '../../assets/icons/whatsapp.svg';
 import heroVideo from '../../assets/videos/hero.mp4';
 import heroImage from '../../assets/images/hero.png';
 import GoogleIcon from '../GoogleIcon';
 import AppleIcon from '../AppleIcon';
+import HeroSignUpForm from './HeroSignUpForm';
 
 const Hero = () => {
   const [isVideoPlaying, setIsVideoPlaying] =
@@ -44,19 +45,7 @@ const Hero = () => {
               Easy Payments. <br />
               Make Mun-e Moves.
             </div>
-            <form className="hidden sm:block">
-              <div className="border-2 border-[#CEE0D0] flex justify-between items-center w-[412px] rounded-[14px] h-[60px]">
-                <input
-                  className="w-webkit-fill-available appearance-none placeholder:text-sm placeholder:text-stone-100 bg-transparent rounded py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
-                  id="username"
-                  type="text"
-                  placeholder="Enter your mobile number"
-                />
-                <button className="h-11 rounded-xl text-stone-100 me-2 text-[15px] font-semibold px-6">
-                  Get Mun-e
-                </button>
-              </div>
-            </form>
+            <HeroSignUpForm />
             <div className="hidden sm:flex gap-3 items-center">
               <a href="#/">
                 <img src={GooglePlay} alt="Google Play" />
@@ -64,22 +53,6 @@ const Hero = () => {
               <a href="#/">
                 <img src={AppStore} alt="App Store" />
               </a>
-            </div>
-            <div className="sm:hidden flex justify-center items-center w-full">
-              <form className="w-[240px]">
-                <div className="border-2 bg-white px-2 border-neutral-300 flex justify-start gap-2 items-center rounded-[12px] h-[44px]">
-                  <img
-                    src={WhatsappIcon}
-                    alt="WhatsApp Icon"
-                  />
-                  <input
-                    className="w-webkit-fill-available appearance-none placeholder:text-sm placeholder:text-black bg-transparent rounded text-black leading-tight focus:outline-none focus:shadow-outline"
-                    id="username"
-                    type="text"
-                    placeholder="Enter your mobile number"
-                  />
-                </div>
-              </form>
             </div>
           </div>
         </div>
