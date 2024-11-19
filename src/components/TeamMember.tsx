@@ -13,7 +13,7 @@ const TeamMember: React.FC<TeamMemberProps> = ({
     <button
       type="button"
       aria-label="team member card"
-      className={`${member.role === 'CEO' && 'ml-6 laptop:ml-12'} relative flex rounded-2xl w-content h-full gap-3 tablet:gap-4 flex-col justify-between items-center p-3 transition-all duration-300 ease-in-out ${isActive ? 'bg-[#CEE0D0]' : 'bg-[#F2F7F3]'}`}
+      className={`${member.role === 'CEO' && 'ml-6 laptop:ml-12'} relative flex rounded-2xl w-content h-full gap-3 tablet:gap-4 flex-col justify-between items-center p-3 transition-all duration-300 ease-in-out ${isActive ? 'bg-[#CEE0D0]' : ''}`}
       onClick={onClick}
     >
       <img

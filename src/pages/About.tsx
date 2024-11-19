@@ -4,7 +4,6 @@ import bryan from '../assets/Bryan.png';
 import arrow from '../assets/arrow.png';
 import mainImage from '../assets/pinkshirt.png';
 import NotificationBubble from '../components/NotificationBubbleCard';
-import WhiteMuneButton from '../components/WhiteMuneButton';
 import MeetTheTeam from '../components/meet-the-team/MeetTheTeam';
 import MissionSection from '../components/Mission';
 import Footer from '../components/Footer/Footer';
@@ -20,19 +19,18 @@ const AboutSection: React.FC = () => {
           <div className="w-full lg:w-1/2 flex flex-col items-center lg:items-start space-y-4 sm:space-y-6 text-center lg:text-left">
             <h1 className="text-white font-bold text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-tight">
               <span className="block sm:hidden">
-                Send It.
-                <br /> Save It.
-                <br /> Earn it.
-                <br /> Learn It.
+                Your Money.
+                <br /> Mastered.
               </span>
               <span className="hidden sm:block">
-                Send It. Save It. Earn it. Learn It.
+                Your Money. Mastered.
               </span>
             </h1>
             <p className="text-white text-base sm:text-lg">
-              Experience convenience and knowledge with our
-              app. Simplify your financial life and boost
-              your money know-how.
+              Own your finances. Mun-e simplifies sending,
+              saving & growing your money. Learn on the go &
+              build wealth with your community. Download &
+              take control!
             </p>
             <div className="flex justify-center lg:justify-start w-full">
               <GlowButton color="white">

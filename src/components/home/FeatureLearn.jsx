@@ -4,7 +4,7 @@ import GlowButton from '../button/Glow';
 
 const FeatureLearn = () => {
     return (
-        <div className='lg:mx-2 mx-3 mt-[80px] md:mt-0'>
+        <div className='lg:mx-2 mx-3 tablet:mt-[80px] md:mt-0'>
             <div className='learn-section max-w-[1120px] border-2 border-[#CEE0D0] mx-auto hidden md:flex justify-start items-center h-[700px] rounded-[48px]'>
                 <div className='md:w-[510px] ms-10 space-y-8 border-2 border-[#CEE0D0] rounded-3xl p-6 bg-white'>
                     <div className="text-4xl font-bold">Learn Together</div>
