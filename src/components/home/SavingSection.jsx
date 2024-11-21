@@ -4,6 +4,7 @@ import SavingMobileMockup from '../../assets/images/saving-mobile-mockup.png'
 import FlagIcon from '../../assets/icons/flag.svg'
 import TableIcon from '../../assets/icons/table.svg'
 import TrophyIcon from '../../assets/icons/trophy.svg'
+import GlowButton from '../button/Glow';
 
 const SavingSection = () => {
     return (
@@ -17,7 +18,7 @@ const SavingSection = () => {
                                 Use our interactive tools to set personal savings goals and track your progress with real-time updates.
                             </div>
                             <div className='hidden md:block pt-3'>
-                                <button className='button-two text-[15px] md:text-base w-[133px] h-[44px] border-2 bg-stone-100 border-neutral-300 rounded-xl text-black font-semibold'>Start Saving</button>
+                                <GlowButton color='white'>Start Saving</GlowButton>
                             </div>
                         </div>
                     </div>

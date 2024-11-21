@@ -1,5 +1,6 @@
 import React from 'react';
 import CardMockup from '../../assets/images/card.png'
+import GlowButton from '../button/Glow';
 
 const UnlockSection = () => {
     return (
@@ -16,7 +17,7 @@ const UnlockSection = () => {
                                 Enjoy exclusive perks and rewards as a thank you for being an early supporter.
                             </div>
                             <div className='pt-3'>
-                                <button className='button-three w-[131px] h-[44px] text-[15px] text-stone-100 font-semibold rounded-xl'>Get Mun-e</button>
+                                <GlowButton color='green'>Get Mun-e</GlowButton>
                             </div>
                         </div>
                     </div>

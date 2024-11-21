@@ -70,8 +70,8 @@ export const NavLink = styled(Link)`
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -8px; // adjust this value as needed
-    height: 1.5px; // thickness of the underline
+    bottom: -3px; // adjust this value as needed
+    height: .5px; // thickness of the underline
     background-color: #1aae33;
   }
 
@@ -149,15 +149,15 @@ export const Sidebar = styled.div<{ isOpen: boolean }>`
   z-index: 1000;
 
   a {
-    color: #fffff;
+    color: #ffffff;
     text-decoration: none;
     font-size: 1.5rem;
     margin: 10px 0;
 
     &:hover {
-      text-decoration: underline;
-      text-decoration-thickness: 2px; /* Make underline thicker */
-      text-decoration-color: #1aae33;
+      // text-decoration: underline;
+      // text-decoration-thickness: 2px; /* Make underline thicker */
+      // text-decoration-color: #1aae33;
     }
   }
 

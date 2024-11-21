@@ -123,3 +123,9 @@ footer {
 .mob-btn {
   background: #19a530;
 }
+
+@media (max-width: 640px) {
+  .webkit-fill{
+    height: -webkit-fill-available;
+  }
+}

@@ -4,6 +4,7 @@ import CardIcon from '../../assets/icons/icon_card.svg'
 import HatIcon from '../../assets/icons/hat-graduation.svg'
 import PiggyIcon from '../../assets/icons/pig-icon.svg'
 import SheildIcon from '../../assets/icons/sheild-icon.svg'
+import GlowButton from '../button/Glow';
 
 const AccessSection = () => {
     return (
@@ -16,11 +17,12 @@ const AccessSection = () => {
                             <div className="primary-text-white w-[250px] md:w-full">
                                 Get early access to cutting-edge financial tools and features designed just for you.</div>
                             <div>
-                                <button className='button-two text-[15px] md:text-base w-[133px] h-[44px] border-2 bg-stone-100 border-neutral-300 rounded-xl text-black font-semibold'>Get Mun-e</button>
+                                <GlowButton color='white'>Get Mun-e</GlowButton>
+                                {/* <button className='button-two text-[15px] md:text-base w-[133px] h-[44px] border-2 bg-stone-100 border-neutral-300 rounded-xl text-black font-semibold'>Get Mun-e</button> */}
                             </div>
                         </div>
                     </div>
-                    <div className="md:flex justify-end mt-10 md:mt-0">
+                    <div className="md:flex justify-end mt-10 md:mt-0 border-[#CEE0D0]">
                         <img src={AccessImage} className="" alt="" />
                     </div>
                 </div>
