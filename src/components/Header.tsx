@@ -58,7 +58,7 @@ const Header: React.FC = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
         <NavLink to="/contact">Contact</NavLink>
-        <NavLink to="/subscribe">Subscribe</NavLink>
+        {/* <NavLink to="/subscribe">Subscribe</NavLink> */}
         <Button to="/get-started">Get Mun-e</Button>
         {/* <NavLink to="/pricing">Pricing</NavLink> */}
       </Nav>
@@ -87,12 +87,12 @@ const Header: React.FC = () => {
             <NavLink to="/contact" onClick={toggleSidebar}>
               Contact
             </NavLink>
-            <NavLink
+            {/* <NavLink
               to="/subscribe"
               onClick={toggleSidebar}
             >
               Subscribe
-            </NavLink>
+            </NavLink> */}
             <SocialLinks>
               <a
                 href="https://facebook.com"

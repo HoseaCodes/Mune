@@ -50,10 +50,10 @@ const Hero = () => {
                   className="w-webkit-fill-available appearance-none placeholder:text-sm placeholder:text-stone-100 bg-transparent rounded py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
                   id="username"
                   type="text"
-                  placeholder="Enter your mobile number"
+                  placeholder="Enter your email"
                 />
                 <button className="h-11 rounded-xl text-stone-100 me-2 text-[15px] font-semibold px-6">
-                  Get Mun-e
+                  Subscribe
                 </button>
               </div>
             </form>
@@ -76,7 +76,7 @@ const Hero = () => {
                     className="w-webkit-fill-available appearance-none placeholder:text-sm placeholder:text-black bg-transparent rounded text-black leading-tight focus:outline-none focus:shadow-outline"
                     id="username"
                     type="text"
-                    placeholder="Enter your mobile number"
+                    placeholder="Enter your email"
                   />
                 </div>
               </form>
@@ -112,7 +112,7 @@ const Hero = () => {
         </button>
       </div>
       <div className="flex justify-center items-center mt-6">
-        <div className="md:hidden flex gap-3 items-center">
+        <div className="hidden md:hidden flex gap-3 items-center">
           <GoogleIcon />
           <AppleIcon />
         </div>

@@ -27,30 +27,134 @@ import {
   faChevronRight,
   faChevronUp,
 } from '@fortawesome/free-solid-svg-icons';
-import MarquesZahir from '../assets/Marques-Zahir.png'; // Replace with actual image path
-import CaseyBass from '../assets/Casey-Bass.png'; // Replace with actual image path
-import AshleyLewis from '../assets/Ashley-Lewis.png'; // Replace with actual image path
-import connectTeam from '../assets/connect-team.png'; // Replace with actual image path
+import MarquesZahir from '../assets/Marques-Zahir.png';
+import CaseyBass from '../assets/Casey-Bass.png';
+import AshleyLewis from '../assets/Ashley-Lewis.png';
+import connectTeam from '../assets/connect-team.png';
+
+interface FormData {
+  name: string;
+  email: string;
+  message: string;
+}
 
 const Contact: React.FC = () => {
-  const [activeIndexes, setActiveIndexes] = useState<{
-    [key: number]: number | null;
-  }>({});
-  const faqGridRef = useRef<HTMLDivElement>(null);
+  // Form state
+  const [formData, setFormData] = useState<FormData>({
+    name: '',
+    email: '',
+    message: ''
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+  const [activeIndexes, setActiveIndexes] = useState<{[key: number]: number | null}>({});
+    const faqGridRef = useRef<HTMLDivElement>(null);
+  
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+      const { name, value } = e.target;
+      console.log(`Input changed: ${name} = ${value}`);
+      setFormData(prev => ({
+        ...prev,
+        [name]: value
+      }));
+    };
 
-  const handleToggle = (
-    itemIndex: number,
-    questionIndex: number
-  ) => {
+  const submitToHubSpot = async (data: FormData) => {
+    const portalId = '48431061';
+    const formGuid = 'a66cce19-6698-4107-811e-249bfe41be90';
+
+    const hubspotData = {
+      fields: [
+        {
+          name: "firstname",
+          value: data.name
+        },
+        {
+          name: "email",
+          value: data.email
+        },
+        {
+          name: "message",
+          value: data.message
+        }
+      ],
+      context: {
+        pageUri: window.location.href,
+        pageName: document.title
+      }
+    };
+
+    const response = await fetch(
+      `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(hubspotData)
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to submit to HubSpot');
+    }
+
+    return await response.json();
+  };
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+      e.preventDefault();
+      console.log('Form submitted', formData);
+      
+      setIsSubmitting(true);
+      setSubmitStatus('idle');
+  
+      try {
+        if (!formData.name || !formData.email || !formData.message) {
+          console.log('Form validation failed');
+          setSubmitStatus('error');
+          return;
+        }
+  
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(formData.email)) {
+          console.log('Invalid email format');
+          setSubmitStatus('error');
+          return;
+        }
+  
+        console.log('Attempting HubSpot submission...');
+        await submitToHubSpot(formData);
+        
+        setFormData({
+          name: '',
+          email: '',
+          message: ''
+        });
+        
+        setSubmitStatus('success');
+        console.log('Form submission successful');
+  
+        setTimeout(() => {
+          setSubmitStatus('idle');
+        }, 3000);
+  
+      } catch (error) {
+        console.error('Form submission error:', error);
+        setSubmitStatus('error');
+      } finally {
+        setIsSubmitting(false);
+      }
+    };
+
+  const handleToggle = (itemIndex: number, questionIndex: number) => {
     setActiveIndexes((prev) => ({
       ...prev,
-      [itemIndex]:
-        prev[itemIndex] === questionIndex
-          ? null
-          : questionIndex,
+      [itemIndex]: prev[itemIndex] === questionIndex ? null : questionIndex,
     }));
   };
 
+  // FAQ Grid mouse handling
   useEffect(() => {
     const faqGrid = faqGridRef.current;
     if (!faqGrid) return;
@@ -80,32 +184,20 @@ const Contact: React.FC = () => {
       if (!isDown) return;
       e.preventDefault();
       const x = e.pageX - faqGrid.offsetLeft;
-      const walk = (x - startX) * 3; //scroll-fast
+      const walk = (x - startX) * 3;
       faqGrid.scrollLeft = scrollLeft - walk;
     };
 
     faqGrid.addEventListener('mousedown', handleMouseDown);
-    faqGrid.addEventListener(
-      'mouseleave',
-      handleMouseLeave
-    );
+    faqGrid.addEventListener('mouseleave', handleMouseLeave);
     faqGrid.addEventListener('mouseup', handleMouseUp);
     faqGrid.addEventListener('mousemove', handleMouseMove);
 
     return () => {
-      faqGrid.removeEventListener(
-        'mousedown',
-        handleMouseDown
-      );
-      faqGrid.removeEventListener(
-        'mouseleave',
-        handleMouseLeave
-      );
+      faqGrid.removeEventListener('mousedown', handleMouseDown);
+      faqGrid.removeEventListener('mouseleave', handleMouseLeave);
       faqGrid.removeEventListener('mouseup', handleMouseUp);
-      faqGrid.removeEventListener(
-        'mousemove',
-        handleMouseMove
-      );
+      faqGrid.removeEventListener('mousemove', handleMouseMove);
     };
   }, []);
 
@@ -165,23 +257,49 @@ const Contact: React.FC = () => {
               src={connectTeam}
               alt="Connect With Our Team"
             />
-            <FormWrapper>
-              <Input type="text" placeholder="Name" />
-              <Input type="email" placeholder="Email" />
-              <TextArea placeholder="Message" />
-              <SubmitButton>Submit</SubmitButton>
+            <FormWrapper onSubmit={handleSubmit}>
+              <Input
+                type="text"
+                name="name"
+                placeholder="Name"
+                value={formData.name}
+                onChange={handleInputChange}
+                required
+              />
+              <Input
+                type="email"
+                name="email"
+                placeholder="Email"
+                value={formData.email}
+                onChange={handleInputChange}
+                required
+              />
+              <TextArea
+                name="message"
+                placeholder="Message"
+                value={formData.message}
+                onChange={handleInputChange}
+                required
+              />
+              <SubmitButton
+                type="submit"
+                disabled={isSubmitting}
+                className={submitStatus !== 'idle' ? submitStatus : ''}
+              >
+                {isSubmitting ? 'Submitting...' : 'Submit'}
+              </SubmitButton>
+              {submitStatus === 'success' && (
+                <p className="text-green-500 mt-2">Message sent successfully!</p>
+              )}
+              {submitStatus === 'error' && (
+                <p className="text-red-500 mt-2">Failed to send message. Please try again.</p>
+              )}
             </FormWrapper>
           </Section>
           <TeamImages>
-            <TeamImage
-              src={MarquesZahir}
-              alt="Marques Zahir"
-            />
+            <TeamImage src={MarquesZahir} alt="Marques Zahir" />
             <TeamImage src={CaseyBass} alt="Casey Bass" />
-            <TeamImage
-              src={AshleyLewis}
-              alt="Ashley Lewis"
-            />
+            <TeamImage src={AshleyLewis} alt="Ashley Lewis" />
             <ReplyText>
               Hang Tight, We'll Reply Shortly.
             </ReplyText>
@@ -191,48 +309,25 @@ const Contact: React.FC = () => {
             <FAQGrid ref={faqGridRef}>
               {faqData.map((item, itemIndex) => (
                 <FAQItem key={itemIndex}>
-                  {item.questions.map(
-                    (question, questionIndex) => (
-                      <div key={questionIndex}>
-                        <Question
-                          className={
-                            activeIndexes[itemIndex] ===
-                            questionIndex
-                              ? 'active'
-                              : ''
-                          }
-                          onClick={() =>
-                            handleToggle(
-                              itemIndex,
-                              questionIndex
-                            )
-                          }
-                        >
-                          {question}{' '}
-                          <FontAwesomeIcon
-                            icon={
-                              activeIndexes[itemIndex] ===
-                              questionIndex
-                                ? faChevronUp
-                                : faChevronRight
-                            }
-                          />
-                        </Question>
-                        <Answer
-                          className={
-                            activeIndexes[itemIndex] ===
-                            questionIndex
-                              ? 'active'
-                              : ''
-                          }
-                        >
-                          {item.answers[questionIndex]}
-                        </Answer>
-                        {activeIndexes[itemIndex] !==
-                          questionIndex && <Separator />}
-                      </div>
-                    )
-                  )}
+                  {item.questions.map((question, questionIndex) => (
+                    <div key={questionIndex}>
+                      <Question
+                        className={activeIndexes[itemIndex] === questionIndex ? 'active' : ''}
+                        onClick={() => handleToggle(itemIndex, questionIndex)}
+                      >
+                        {question}{' '}
+                        <FontAwesomeIcon
+                          icon={activeIndexes[itemIndex] === questionIndex ? faChevronUp : faChevronRight}
+                        />
+                      </Question>
+                      <Answer
+                        className={activeIndexes[itemIndex] === questionIndex ? 'active' : ''}
+                      >
+                        {item.answers[questionIndex]}
+                      </Answer>
+                      {activeIndexes[itemIndex] !== questionIndex && <Separator />}
+                    </div>
+                  ))}
                 </FAQItem>
               ))}
             </FAQGrid>

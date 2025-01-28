@@ -68,7 +68,7 @@ export const StyledImage = styled.img`
   }
 `;
 
-export const FormWrapper = styled.div`
+export const FormWrapper = styled.form`
   background-color: #19a530;
   padding: 24px;
   border-radius: 24px;
