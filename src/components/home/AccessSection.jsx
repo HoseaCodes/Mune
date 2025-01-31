@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import AccessImage from '../../assets/images/access-two.png'
 import CardIcon from '../../assets/icons/icon_card.svg'
@@ -6,7 +7,7 @@ import PiggyIcon from '../../assets/icons/pig-icon.svg'
 import SheildIcon from '../../assets/icons/sheild-icon.svg'
 import GlowButton from '../button/Glow';
 
-const AccessSection = () => {
+const AccessSection = ({ isModalOpen, setIsModalOpen }) => {
     return (
         <div className="lg:mx-2 mx-3 mt-[80px] md:mt-[120px]">
             <div className="access-section max-w-[1184px] mx-auto rounded-[22px] md:rounded-[48px]">
@@ -17,7 +18,7 @@ const AccessSection = () => {
                             <div className="primary-text-white w-[250px] md:w-full">
                                 Get early access to cutting-edge financial tools and features designed just for you.</div>
                             <div>
-                                <GlowButton color='white'>Get Mun-e</GlowButton>
+                                <GlowButton onClick={() => setIsModalOpen(!isModalOpen)} color='white'>Get Mun-e</GlowButton>
                                 {/* <button className='button-two text-[15px] md:text-base w-[133px] h-[44px] border-2 bg-stone-100 border-neutral-300 rounded-xl text-black font-semibold'>Get Mun-e</button> */}
                             </div>
                         </div>

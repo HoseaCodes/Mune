@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import SavingMockup from '../../assets/images/saving-mockup.png'
 import SavingMobileMockup from '../../assets/images/saving-mobile-mockup.png'
@@ -6,7 +7,7 @@ import TableIcon from '../../assets/icons/table.svg'
 import TrophyIcon from '../../assets/icons/trophy.svg'
 import GlowButton from '../button/Glow';
 
-const SavingSection = () => {
+const SavingSection = ({ isModalOpen, setIsModalOpen }) => {
     return (
         <div className="lg:mx-2 mx-3 md:mt-[120px] mt-[80px]">
             <div className="saving-section px-6 py-10 md:max-w-[1184px] mx-auto rounded-3xl md:rounded-[48px]">
@@ -18,7 +19,7 @@ const SavingSection = () => {
                                 Use our interactive tools to set personal savings goals and track your progress with real-time updates.
                             </div>
                             <div className='hidden md:block pt-3'>
-                                <GlowButton color='white'>Start Saving</GlowButton>
+                                <GlowButton onClick={() => setIsModalOpen(!isModalOpen)} color='white'>Start Saving</GlowButton>
                             </div>
                         </div>
                     </div>

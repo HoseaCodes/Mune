@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import LearnImage from '../../assets/images/learn.jpg'
 import GlowButton from '../button/Glow';
 
-const FeatureLearn = () => {
+const FeatureLearn = ({ isModalOpen, setIsModalOpen }) => {
     return (
         <div className='lg:mx-2 mx-3 mt-[80px] md:mt-0'>
             <div className='learn-section max-w-[1120px] border-2 border-[#CEE0D0] mx-auto hidden md:flex justify-start items-center h-[700px] rounded-[48px]'>
@@ -12,8 +13,8 @@ const FeatureLearn = () => {
                         Grow with friends using Mun-e’s lessons on budgeting, investing, and saving. Our app makes elevating your financial IQ together fun.
                     </div>
                     <div className='flex gap-4'>
-                        <GlowButton color='green'>Start a Lesson</GlowButton>
-                        <button className='text-black font-semibold h-11 w-[131px] border-2 rounded-xl border-[#CEE0D0] text-[15px]'>Learn More</button>
+                        <GlowButton onClick={() => setIsModalOpen(!isModalOpen)} color='green'>Start a Lesson</GlowButton>
+                        <button onClick={() => setIsModalOpen(!isModalOpen)} className='text-black font-semibold h-11 w-[131px] border-2 rounded-xl border-[#CEE0D0] text-[15px]'>Learn More</button>
                     </div>
                 </div>
             </div>
@@ -25,8 +26,8 @@ const FeatureLearn = () => {
                         Grow with friends using Mun-e’s lessons on budgeting, investing, and saving. Our app makes elevating your financial IQ together fun.
                     </div>
                     <div className='flex md:flex-row flex-col md:gap-4 gap-3'>
-                        <button className='button-one text-stone-100 font-semibold h-11 w-[131px] rounded-xl text-[15px]'>Start a Lesson</button>
-                        <button className=' text-black font-semibold h-11 w-[131px] border-2 rounded-xl border-[#CEE0D0] text-[15px]'>Learn More</button>
+                        <button onClick={() => setIsModalOpen(!isModalOpen)} className='button-one text-stone-100 font-semibold h-11 w-[131px] rounded-xl text-[15px]'>Start a Lesson</button>
+                        <button onClick={() => setIsModalOpen(!isModalOpen)} className=' text-black font-semibold h-11 w-[131px] border-2 rounded-xl border-[#CEE0D0] text-[15px]'>Learn More</button>
                     </div>
                 </div>
             </div>

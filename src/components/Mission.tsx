@@ -26,7 +26,7 @@ const MissionSection: React.FC<MissionSectionProps> = ({ isModalOpen, setIsModal
             </p>
             <div className="flex justify-center space-x-4">
               <GlowButton color='green' onClick={() => setIsModalOpen(!isModalOpen) }>Get Mun-e</GlowButton>
-              <button className="bg-transparent text-[#010a03] font-bold py-2 px-6 rounded-lg border-2 border-custom-bgreen">
+              <button onClick={() => setIsModalOpen(!isModalOpen)} className="bg-transparent text-[#010a03] font-bold py-2 px-6 rounded-lg border-2 border-custom-bgreen">
                 Learn More
               </button>
             </div>
@@ -65,7 +65,7 @@ const MissionSection: React.FC<MissionSectionProps> = ({ isModalOpen, setIsModal
                 <div>
                   <GreenMuneButton onClick={() => setIsModalOpen(!isModalOpen) } text="Get Mun-e" />
                 </div>
-                <button className="bg-transparent text-[#010a03] font-bold py-2 px-6 rounded-lg border-2 border-custom-bgreen">
+                <button onClick={() => setIsModalOpen(!isModalOpen)} className="bg-transparent text-[#010a03] font-bold py-2 px-6 rounded-lg border-2 border-custom-bgreen">
                   Learn More
                 </button>
               </div>
