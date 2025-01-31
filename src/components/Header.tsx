@@ -5,7 +5,7 @@ import {
   HeaderLogo,
   Nav,
   NavLink,
-  Button,
+  GlowButton as Button,
   HamburgerMenu,
   Bar,
   Sidebar,
@@ -22,7 +22,11 @@ import {
 import headerlogo from '../assets/headerlogo.png';
 import sidebarLogo from '../assets/sidebarlogo.png';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onClick: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onClick }) => {
   // const [isOpen, setIsOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -59,7 +63,7 @@ const Header: React.FC = () => {
         <NavLink to="/about">About</NavLink>
         <NavLink to="/contact">Contact</NavLink>
         {/* <NavLink to="/subscribe">Subscribe</NavLink> */}
-        <Button to="/get-started">Get Mun-e</Button>
+        <Button onClick={onClick} >Get Mun-e</Button>
         {/* <NavLink to="/pricing">Pricing</NavLink> */}
       </Nav>
       {isMobile && (

@@ -1,21 +1,13 @@
-import React, { useState } from 'react';
+import React from 'react';
 import missionImage from '../assets/black-couple.png';
 import GreenMuneButton from '../components/GreenMuneButton';
-import GlowButton from './button/Glow';
-import NewsletterModal from './NewsletterModal';
+import GlowButton from './button/Glow'
+interface MissionSectionProps {
+  isModalOpen: boolean;
+  setIsModalOpen: (value: boolean) => void;
+}
 
-const MissionSection: React.FC = () => {
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const handleOpenModal = () => {
-    console.log('Opening modal');
-    setIsModalOpen(true);
-  };
-
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-  };
-
+const MissionSection: React.FC<MissionSectionProps> = ({ isModalOpen, setIsModalOpen }) => {
   return (
     <>
       <div className="mb-36 mt-[-88px]">
@@ -33,7 +25,7 @@ const MissionSection: React.FC = () => {
               your bag for the future.
             </p>
             <div className="flex justify-center space-x-4">
-              <GlowButton color='green' onClick={handleOpenModal}>Get Mun-e</GlowButton>
+              <GlowButton color='green' onClick={() => setIsModalOpen(!isModalOpen) }>Get Mun-e</GlowButton>
               <button className="bg-transparent text-[#010a03] font-bold py-2 px-6 rounded-lg border-2 border-custom-bgreen">
                 Learn More
               </button>
@@ -70,8 +62,8 @@ const MissionSection: React.FC = () => {
               </p>
               <div className="flex justify-center space-x-4">
                 {/* Updated GreenMuneButton with onClick handler */}
-                <div onClick={handleOpenModal}>
-                  <GreenMuneButton text="Get Mun-e" />
+                <div>
+                  <GreenMuneButton onClick={() => setIsModalOpen(!isModalOpen) } text="Get Mun-e" />
                 </div>
                 <button className="bg-transparent text-[#010a03] font-bold py-2 px-6 rounded-lg border-2 border-custom-bgreen">
                   Learn More
@@ -81,10 +73,6 @@ const MissionSection: React.FC = () => {
           </div>
         </div>
       </div>
-      <NewsletterModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-      />
     </>
   );
 };

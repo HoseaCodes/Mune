@@ -68,7 +68,7 @@ export const StyledImage = styled.img`
   }
 `;
 
-export const FormWrapper = styled.form`
+export const FormWrapper = styled.div`
   background-color: #19a530;
   padding: 24px;
   border-radius: 24px;
@@ -163,8 +163,8 @@ export const SubmitButton = styled.button`
 export const TeamImages = styled.div`
   display: flex;
   align-items: center;
-  margin-top: -5rem;
-  margin-left: 57rem;
+  margin-top: -45px;
+  margin-left: 52vw;
   align-self: flex-end;
   height: auto;
 
@@ -172,30 +172,6 @@ export const TeamImages = styled.div`
     margin-top: 5px;
     margin-left: 0;
     justify-content: center;
-
-    &:hover img:nth-child(1) {
-    transform: translateX(-3px);
-    }
-
-    &:hover img:nth-child(2) {
-      transform: translateX(0);
-    }
-
-    &:hover img:nth-child(3) {
-      transform: translateX(3px);
-    }
-  }
-
-  &:hover img:nth-child(1) {
-    transform: translateX(-3px);
-  }
-
-  &:hover img:nth-child(2) {
-    transform: translateX(0);
-  }
-
-  &:hover img:nth-child(3) {
-    transform: translateX(3px);
   }
 `;
 
@@ -203,10 +179,9 @@ export const TeamImage = styled.img`
   width: 67.5px;
   height: 67.5px;
   border-radius: 33.75px;
-  border: 2.82px solid #f2f7f4;
+  border: 2.25px;
   margin-right: -20px;
   position: relative;
-  transition: transform 0.3s ease;
 
   @media (max-width: 768px) {
     margin-right: -23px;

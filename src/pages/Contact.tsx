@@ -20,8 +20,6 @@ import {
   Separator,
   StyledImage,
 } from '../styles/ContactStyles';
-import Header from '../components/Header';
-import Footer from '../components/Footer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
   faChevronRight,
@@ -29,8 +27,9 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import MarquesZahir from '../assets/Marques-Zahir.png';
 import CaseyBass from '../assets/Casey-Bass.png';
-import AshleyLewis from '../assets/Ashley-Lewis.png';
+import DHosea from '../assets/dhosea.jpeg';
 import connectTeam from '../assets/connect-team.png';
+import Layout from '../components/home/Layout';
 
 interface FormData {
   name: string;
@@ -102,8 +101,7 @@ const Contact: React.FC = () => {
     return await response.json();
   };
 
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-      e.preventDefault();
+  const handleSubmit = async () => {
       console.log('Form submitted', formData);
       
       setIsSubmitting(true);
@@ -247,8 +245,7 @@ const Contact: React.FC = () => {
   ];
 
   return (
-    <>
-      <Header />
+    <Layout>
       <ContactWrapper>
         <MainContent>
           <Section>
@@ -257,7 +254,8 @@ const Contact: React.FC = () => {
               src={connectTeam}
               alt="Connect With Our Team"
             />
-            <FormWrapper onSubmit={handleSubmit}>
+            {/* <FormWrapper onSubmit={handleSubmit}> */}
+            <FormWrapper>
               <Input
                 type="text"
                 name="name"
@@ -285,11 +283,12 @@ const Contact: React.FC = () => {
                 type="submit"
                 disabled={isSubmitting}
                 className={submitStatus !== 'idle' ? submitStatus : ''}
+                onClick={() => handleSubmit()}
               >
                 {isSubmitting ? 'Submitting...' : 'Submit'}
               </SubmitButton>
               {submitStatus === 'success' && (
-                <p className="text-green-500 mt-2">Message sent successfully!</p>
+                <p className="text-white mt-2">Message sent successfully!</p>
               )}
               {submitStatus === 'error' && (
                 <p className="text-red-500 mt-2">Failed to send message. Please try again.</p>
@@ -299,7 +298,7 @@ const Contact: React.FC = () => {
           <TeamImages>
             <TeamImage src={MarquesZahir} alt="Marques Zahir" />
             <TeamImage src={CaseyBass} alt="Casey Bass" />
-            <TeamImage src={AshleyLewis} alt="Ashley Lewis" />
+            <TeamImage src={DHosea} alt="D Hosea" />
             <ReplyText>
               Hang Tight, We'll Reply Shortly.
             </ReplyText>
@@ -334,8 +333,7 @@ const Contact: React.FC = () => {
           </FAQSection>
         </MainContent>
       </ContactWrapper>
-      <Footer />
-    </>
+    </Layout>
   );
 };
 

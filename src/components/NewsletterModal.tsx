@@ -9,15 +9,71 @@ interface NewsletterModalProps {
 
 const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) => {
   const [email, setEmail] = useState('');
+  const [subscriptionStatus, setSubscriptionStatus] = useState('');
+  
+  const submitToHubSpot = async (email: string) => {
+    const portalId = '48431061';
+    const formGuid = '2eb20885-261e-4be4-8e73-677871b8dcdf';
 
-  if (!isOpen) return null;
+    const hubspotData = {
+      fields: [
+        {
+          name: "email",
+          value: email
+        },
+      ],
+      context: {
+        pageUri: window.location.href,
+        pageName: document.title
+      }
+    };
 
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    // Handle form submission logic here
-    console.log('Email submitted:', email);
-    onClose();
+    const response = await fetch(
+      `https://api.hsforms.com/submissions/v3/integration/submit/${portalId}/${formGuid}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(hubspotData)
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error('Failed to submit to HubSpot');
+    }
+
+    return await response.json();
   };
+
+  const validateEmail = (email: string) => {
+    const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+    return emailRegex.test(email);
+  };
+
+  const onClickSubscribe = async (e: React.FormEvent) => {
+    try {
+      e.preventDefault();
+      const valid = validateEmail(email);
+      if (!valid) {
+        setSubscriptionStatus('Invalid email');
+        return;
+      }
+      await submitToHubSpot(email);
+      setSubscriptionStatus('Thank you, you have subscribed successfully!');
+  
+      // Wait for 2 seconds before resetting and closing
+      setTimeout(() => {
+        setEmail('');
+        setSubscriptionStatus('');
+        onClose(); // Close after the 2 seconds delay
+      }, 2000);
+    } catch (error) {
+      setSubscriptionStatus('Failed to subscribe');
+    }
+  };
+  
+  if (!isOpen) return null;
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
@@ -50,7 +106,7 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) =>
               Our newsletter delivers the latest insights, tips and tools on all things related to personal finance — from long-term investors, leaders, and economists around the world. Subscribe for monthly money insights.
             </p>
             
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={onClickSubscribe} className="space-y-4">
               <div className="flex items-center justify-start w-full h-[60px] p-8 rounded-[16px] border-2 border-[#cee0d0] bg-white mb-5">
                 <input
                     type="email"
@@ -65,6 +121,11 @@ const NewsletterModal: React.FC<NewsletterModalProps> = ({ isOpen, onClose }) =>
                     className="hidden lg:block whitespace-nowrap"
                 />
               </div>
+              {subscriptionStatus && (
+                <p className={`text-2xl text-center font-semibold mt-4 ${subscriptionStatus.includes('successful') ? 'text-green-500' : 'text-red-500'}`}>
+                  {subscriptionStatus}
+                </p>
+              )}
               <p className="text-xs text-gray-500 mt-4">
                 By submitting this information, you agree to receive marketing emails and accept our privacy policy. You can opt-out at any time.
               </p>

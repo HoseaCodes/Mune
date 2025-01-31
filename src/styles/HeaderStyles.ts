@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { colors, spacing, typography } from './';
+import { Button } from './HomeStyles';
 
 export const HeaderWrapper = styled.header`
   display: flex;
@@ -80,7 +81,7 @@ export const NavLink = styled(Link)`
   }
 `;
 
-export const Button = styled(Link)`
+export const GlowButton = styled(Button)`
   padding: ${spacing.small} ${spacing.large};
   background-color: ${colors.primary};
   color: #f2f7f4;
