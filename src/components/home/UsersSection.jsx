@@ -122,7 +122,7 @@ const UsersSection = () => {
                                 transition: isDragging ? 'none' : 'transform 0.5s ease-out'
                             }}
                         >
-                            <div className="w-[230px] md:w-[449px] border-4 rounded-3xl md:rounded-[36px] space-y-6 p-4 md:p-8">
+                            <div className="w-[230px] md:w-[449px] border-4 rounded-3xl md:rounded-[36px] space-y-6 p-4 md:p-8 border-[#CEE0D0]">
                                 <div className='flex items-center gap-4'>
                                     <img src={UserOne} className='w-[33px] md:w-auto' alt="User One" />
                                     <div>
@@ -132,7 +132,7 @@ const UsersSection = () => {
                                 </div>
                                 <p className='text-xs md:text-base'>“Balancing school and work was tough until I found Mun-e. It&apos;s more than just an app—it&lsquo;s my financial assistant. I easily send money, save, and even started investing. Mun-e has transformed how I manage my finances and taught me so much about money management. I love it!”</p>
                             </div>
-                            <div className="w-[230px] md:w-[449px] border-4 rounded-3xl md:rounded-[36px] space-y-6 p-4 md:p-8">
+                            <div className="w-[230px] md:w-[449px] border-4 rounded-3xl md:rounded-[36px] space-y-6 p-4 md:p-8 border-[#CEE0D0]">
                                 <div className='flex items-center gap-4'>
                                     <img src={UserTwo} className='w-[33px] md:w-auto' alt="User One" />
                                     <div>
@@ -142,7 +142,7 @@ const UsersSection = () => {
                                 </div>
                                 <p className='text-xs md:text-base'>“Mun-e has completely changed how I handle my finances. From quick transfers with classmates to tracking my spending habits, everything is simpler now. Plus, the investment features introduced me to new ways to grow my savings safely. Every student should have this app!”</p>
                             </div>
-                            <div className="w-[230px] md:w-[449px] border-4 rounded-3xl md:rounded-[36px] space-y-6 p-4 md:p-8">
+                            <div className="w-[230px] md:w-[449px] border-4 rounded-3xl md:rounded-[36px] space-y-6 p-4 md:p-8 border-[#CEE0D0]">
                                 <div className='flex items-center gap-4'>
                                     <img src={UserThree} className='w-[33px] md:w-auto' alt="User One" />
                                     <div>

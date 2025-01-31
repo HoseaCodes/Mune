@@ -9,15 +9,16 @@ import UnlockSection from '../components/home/UnlockSection';
 import AccessSection from '../components/home/AccessSection';
 
 const Home: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = React.useState(false);
   return (
-    <Layout>
+    <Layout modalOpen={isModalOpen}>
       <Hero />
-      <FeaturePay />
-      <FeatureLearn />
-      <SavingSection />
+      <FeaturePay isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <FeatureLearn isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <SavingSection isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
       <UsersSection />
-      <UnlockSection />
-      <AccessSection />
+      <UnlockSection isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
+      <AccessSection isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} />
     </Layout>
   );
 };

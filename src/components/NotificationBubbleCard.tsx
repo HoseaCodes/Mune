@@ -27,7 +27,7 @@ const NotificationBubbleCard: React.FC<
 }) => {
   return (
     <div
-      className={`${positionClasses[position]} bg-green-200 p-2 rounded-lg shadow-lg flex items-center space-x-2`}
+      className={`${positionClasses[position]} bg-[#F2F7F3] p-2 rounded-lg shadow-lg flex items-center space-x-2 opacity-85`}
     >
       <img
         src={image}
