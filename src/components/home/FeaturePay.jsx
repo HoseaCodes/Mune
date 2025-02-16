@@ -1,6 +1,6 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
-import PlayMockup from '../../assets/images/play-mockup.png';
+import PlayMockup from '../../assets/images/play-mockup-v2.png';
 import PayMobileMockup from '../../assets/images/pay-mobile.png';
 import GlowButton from '../button/Glow';
 

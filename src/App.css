@@ -3,7 +3,7 @@ html, body{
 }
 
 body{
-  background: #F2F7F4;
+  background: #F2FDF9;
   font-family: "Poppins", sans-serif;
   margin: 0;
 }
@@ -73,7 +73,7 @@ p {
 
 
 .button-three {
-  background: #1aae33;
+  background: #00B26C;
 }
 
 .hero-text {
@@ -87,8 +87,8 @@ p {
 }
 
 .hero-section form button {
-  background-color: #1dbf38;
-  box-shadow: 1px 2px 8px 0px #1dbf38;
+  background-color: #00B26C;
+  box-shadow: 1px 2px 8px 0px #00B26C;
 }
 
 .learn-section {

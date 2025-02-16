@@ -19,7 +19,7 @@ import {
   FaInstagram,
   FaTiktok,
 } from 'react-icons/fa';
-import headerlogo from '../assets/headerlogo.png';
+import headerlogo from '../assets/logo/logo-v2.png';
 import sidebarLogo from '../assets/sidebarlogo.png';
 
 interface HeaderProps {

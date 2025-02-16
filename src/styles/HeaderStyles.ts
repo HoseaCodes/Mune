@@ -15,7 +15,7 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const HeaderLogo = styled.img`
-  height: 60px;
+  height: 30px;
   margin-left: ${spacing.large};
   width: auto;
   border-radius: 4px;
@@ -32,6 +32,9 @@ export const Logo = styled.img`
 export const Nav = styled.nav`
   display: flex;
   align-items: center;
+  margin-right: 4rem;
+  width: 20rem;
+  justify-content: space-between;
 
   @media (max-width: 768px) {
     display: none;
@@ -60,10 +63,11 @@ export const NavLinks = styled.div`
 `;
 
 export const NavLink = styled(Link)`
+  font-family: ${typography.fontFamily};
   margin: 0 ${spacing.medium};
   color: #010a03;
   text-decoration: none;
-  font-weight: ${typography.fontWeight.bold};
+  font-weight: ${typography.fontWeight.semi};
   position: relative;
 
   &:hover::after {
@@ -82,13 +86,13 @@ export const NavLink = styled(Link)`
 `;
 
 export const GlowButton = styled(Button)`
-  padding: ${spacing.small} ${spacing.large};
-  background-color: ${colors.primary};
+  padding: ${spacing.small};
+  background-color: #00B26C;
   color: #f2f7f4;
   text-decoration: none;
   border-radius: 12px;
-  margin-left: ${spacing.large};
   display: flex;
+  justify-content: center;
   align-items: center;
   height: 100%;
   white-space: nowrap;
