@@ -19,7 +19,7 @@ import { Link } from 'react-router-dom';
 const Subscribe: React.FC = () => {
   return (
     <>
-      <Header />
+      <Header onClick={() => {}} />
       <div className="flex flex-col items-center min-h-screen p-5">
         <section className="flex flex-col items-center justify-center w-full max-w-5xl py-6 md:flex-row md:justify-between">
           <div className="text-center md:text-left md:mr-5 mt-10 md:mt-[-4rem]">

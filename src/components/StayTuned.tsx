@@ -16,7 +16,7 @@ const StayTunedSection = () => {
         <div className="flex items-center justify-start w-full h-[60px] p-8 rounded-[14px] border-2 border-[#cee0d0] bg-white mb-5">
           <input
             type="text"
-            placeholder="Enter your mobile number"
+            placeholder="Enter your email"
             className="w-full p-[10px] text-[14px] rounded-l-[30px] border-none outline-none text-black"
           />
           <GreenButton

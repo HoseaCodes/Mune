@@ -5,7 +5,7 @@ import {
   HeaderLogo,
   Nav,
   NavLink,
-  Button,
+  GlowButton as Button,
   HamburgerMenu,
   Bar,
   Sidebar,
@@ -19,10 +19,14 @@ import {
   FaInstagram,
   FaTiktok,
 } from 'react-icons/fa';
-import headerlogo from '../assets/headerlogo.png';
+import headerlogo from '../assets/logo/logo-v2.png';
 import sidebarLogo from '../assets/sidebarlogo.png';
 
-const Header: React.FC = () => {
+interface HeaderProps {
+  onClick: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onClick }) => {
   // const [isOpen, setIsOpen] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
@@ -58,8 +62,8 @@ const Header: React.FC = () => {
         <NavLink to="/">Home</NavLink>
         <NavLink to="/about">About</NavLink>
         <NavLink to="/contact">Contact</NavLink>
-        <NavLink to="/subscribe">Subscribe</NavLink>
-        <Button to="/get-started">Get Mun-e</Button>
+        {/* <NavLink to="/subscribe">Subscribe</NavLink> */}
+        <Button onClick={onClick} >Get Mun-e</Button>
         {/* <NavLink to="/pricing">Pricing</NavLink> */}
       </Nav>
       {isMobile && (
@@ -87,12 +91,12 @@ const Header: React.FC = () => {
             <NavLink to="/contact" onClick={toggleSidebar}>
               Contact
             </NavLink>
-            <NavLink
+            {/* <NavLink
               to="/subscribe"
               onClick={toggleSidebar}
             >
               Subscribe
-            </NavLink>
+            </NavLink> */}
             <SocialLinks>
               <a
                 href="https://facebook.com"

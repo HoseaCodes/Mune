@@ -1,6 +1,7 @@
 import styled from 'styled-components';
 import { Link } from 'react-router-dom';
 import { colors, spacing, typography } from './';
+import { Button } from './HomeStyles';
 
 export const HeaderWrapper = styled.header`
   display: flex;
@@ -14,7 +15,7 @@ export const HeaderWrapper = styled.header`
 `;
 
 export const HeaderLogo = styled.img`
-  height: 60px;
+  height: 30px;
   margin-left: ${spacing.large};
   width: auto;
   border-radius: 4px;
@@ -31,6 +32,9 @@ export const Logo = styled.img`
 export const Nav = styled.nav`
   display: flex;
   align-items: center;
+  margin-right: 4rem;
+  width: 20rem;
+  justify-content: space-between;
 
   @media (max-width: 768px) {
     display: none;
@@ -59,10 +63,11 @@ export const NavLinks = styled.div`
 `;
 
 export const NavLink = styled(Link)`
+  font-family: ${typography.fontFamily};
   margin: 0 ${spacing.medium};
   color: #010a03;
   text-decoration: none;
-  font-weight: ${typography.fontWeight.bold};
+  font-weight: ${typography.fontWeight.semi};
   position: relative;
 
   &:hover::after {
@@ -70,8 +75,8 @@ export const NavLink = styled(Link)`
     position: absolute;
     left: 0;
     right: 0;
-    bottom: -8px; // adjust this value as needed
-    height: 1.5px; // thickness of the underline
+    bottom: -3px; // adjust this value as needed
+    height: .5px; // thickness of the underline
     background-color: #1aae33;
   }
 
@@ -80,14 +85,14 @@ export const NavLink = styled(Link)`
   }
 `;
 
-export const Button = styled(Link)`
-  padding: ${spacing.small} ${spacing.large};
-  background-color: ${colors.primary};
+export const GlowButton = styled(Button)`
+  padding: ${spacing.small};
+  background-color: #00B26C;
   color: #f2f7f4;
   text-decoration: none;
   border-radius: 12px;
-  margin-left: ${spacing.large};
   display: flex;
+  justify-content: center;
   align-items: center;
   height: 100%;
   white-space: nowrap;
@@ -149,15 +154,15 @@ export const Sidebar = styled.div<{ isOpen: boolean }>`
   z-index: 1000;
 
   a {
-    color: #fffff;
+    color: #ffffff;
     text-decoration: none;
     font-size: 1.5rem;
     margin: 10px 0;
 
     &:hover {
-      text-decoration: underline;
-      text-decoration-thickness: 2px; /* Make underline thicker */
-      text-decoration-color: #1aae33;
+      // text-decoration: underline;
+      // text-decoration-thickness: 2px; /* Make underline thicker */
+      // text-decoration-color: #1aae33;
     }
   }
 
