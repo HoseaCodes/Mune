@@ -121,7 +121,7 @@ const Footer: React.FC = () => {
             {subscriptionStatus}
           </p>
         )}
-        <p className="text-[#F2F7F4] text-[16px] max-w-4xl text-left md:text-xl font-normal">
+        <p className="text-[#F2F7F4] text-[16px] max-w-6xl text-left md:text-xl font-normal">
           By submitting this information, you agree to receive marketing emails from 
           Goldman Sachs and accept our <u>privacy policy</u>. You can opt-out at any time.
         </p>

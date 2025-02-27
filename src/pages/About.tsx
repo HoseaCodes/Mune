@@ -29,7 +29,7 @@ const AboutSection: React.FC = () => {
               </span>
             </h1>
             <p className="text-white text-base sm:text-lg">
-              Experience convenience and knowledge with our
+              COMING SOON: Experience convenience and knowledge with our
               app. Simplify your financial life and boost
               your money know-how.
             </p>

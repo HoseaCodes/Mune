@@ -16,7 +16,7 @@ const SavingSection = ({ isModalOpen, setIsModalOpen }) => {
                         <div className='space-y-2'>
                             <div className="text-[22px] md:text-4xl font-bold">Hit Your Savings Goals</div>
                             <div className="primary-text-white w-full md:w-[429px]">
-                                Use our interactive tools to set personal savings goals and track your progress with real-time updates.
+                              COMING SOON: Use our interactive tools to set personal savings goals and track your progress with real-time updates.
                             </div>
                             <div className='hidden md:block pt-3'>
                                 <GlowButton onClick={() => setIsModalOpen(!isModalOpen)} color='white'>Start Saving</GlowButton>
