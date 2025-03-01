@@ -1,8 +1,10 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 import PlayMockup from '../../assets/images/play-mockup.png';
 import PayMobileMockup from '../../assets/images/pay-mobile.png';
+import GlowButton from '../button/Glow';
 
-const FeaturePay = () => {
+const FeaturePay = ({ setIsModalOpen, isModalOpen }) => {
   return (
     <div className="lg:mx-2 mx-3 mt-[80px] md:mt-[120px]">
       <div className="play-section max-w-7xl mx-auto ">
@@ -30,9 +32,7 @@ const FeaturePay = () => {
                 group expenses simple and stress-free.
               </div>
               <div className="hidden md:block">
-                <button className="button-three w-[131px] h-[44px] text-[15px] text-stone-100 font-semibold rounded-xl">
-                  Get Mun-e
-                </button>
+                <GlowButton onClick={() => setIsModalOpen(!isModalOpen)} color='green'>Get Mun-e</GlowButton>
               </div>
             </div>
           </div>
